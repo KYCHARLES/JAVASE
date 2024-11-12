@@ -18,4 +18,12 @@ public class Console {
         System.out.println("3.退出");
         System.out.println("请选择你的操作:");
     }
+
+    public static void console_merchant(){
+        System.out.println("--------------------欢迎来到仿美团外卖系统--------------------");
+        System.out.println("1.商家登录");
+        System.out.println("2.商家注册");
+        System.out.println("3.退出");
+        System.out.println("请选择你的操作:");
+    }
 }

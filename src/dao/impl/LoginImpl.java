@@ -48,4 +48,9 @@ public class LoginImpl implements Login {
             }
         }
     }
+
+    @Override
+    public boolean loginMerchant(String username, String password) {
+        return false;
+    }
 }

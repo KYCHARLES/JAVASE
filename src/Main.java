@@ -1,4 +1,5 @@
 import thread.CustomerThread;
+import thread.MerchantThread;
 import util.Console;
 
 import java.util.Scanner;
@@ -25,7 +26,14 @@ public class Main {
                     }
                     break;
                 case 2:
-
+                    MerchantThread merchantThread = new MerchantThread();
+                    Thread thread2 = new Thread(merchantThread);
+                    thread2.start();
+                    try {
+                        thread2.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     break;
             }
             Console.console();

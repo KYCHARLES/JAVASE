@@ -39,4 +39,37 @@ public class RegisterImpl implements Register {
         }
 
     }
+
+
+    @Override
+    public boolean registerMerchant(String name, String username, String password) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        String sql = "insert into merchant(merchant_id, merchant_name, merchant_username,merchant_password,merchant_status," +
+                     "merchant_unfinishedorder,merchant_completedorder,merchant_cancelledorder,merchant_score," +
+                     "create_date,update_date) " +
+                     "values(merchant_seq.nextval,?,?,?,1,0,0,0,0,sysdate,sysdate)";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+
+            ps.setString(1, name);
+            ps.setString(2, username);
+            ps.setString(3, password);
+            ps.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }
