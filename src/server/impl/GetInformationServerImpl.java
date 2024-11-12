@@ -3,6 +3,7 @@ package server.impl;
 import dao.GetInformation;
 import dao.impl.GetInformationImpl;
 import pojo.Merchant;
+import pojo.MerchantView;
 import server.GetInformationServer;
 
 import java.util.List;
@@ -32,5 +33,18 @@ public class GetInformationServerImpl implements GetInformationServer {
         }else
             System.out.println("没有相关信息!");
         return merchantList;
+    }
+
+    @Override
+    public List<MerchantView> getAllMerchantView(String merchantName) {
+        GetInformationImpl getInformation = new GetInformationImpl();
+        List<MerchantView> merchantViewList = getInformation.getAllMerchantView(merchantName);
+        if (merchantViewList != null) {
+            for (int i = 0; i < merchantViewList.size(); i++) {
+                System.out.println(i + " " + merchantViewList.get(i));
+            }
+        }else
+            System.out.println("搜索异常,请重新尝试!");
+        return merchantViewList;
     }
 }

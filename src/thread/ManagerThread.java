@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class ManagerThread implements Runnable {
     @Override
     public void run() {
-        System.out.println("这里是管理员登录线程线程:");
+        System.out.println("\n" + "这里是管理员登录功能:");
         Console.console_manager();
         Scanner sc = new Scanner(System.in);
         int managerChoice;
@@ -34,6 +34,6 @@ public class ManagerThread implements Runnable {
             }
             Console.console_manager();
         }
-        System.out.println("管理员登录的线程结束啦");
+        System.out.println("管理员登录的功能结束!");
     }
 }

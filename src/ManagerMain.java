@@ -5,10 +5,7 @@ import util.Console;
 
 import java.util.Scanner;
 
-
-public class Main {
-
-
+public class ManagerMain {
     public static void main(String[] args) {
         Console.console();
         Scanner sc = new Scanner(System.in);
@@ -23,7 +20,7 @@ public class Main {
                     try {
                         threadCustomer.join();
                     } catch (InterruptedException e) {
-                       e.printStackTrace();
+                        e.printStackTrace();
                     }
                     break;
                 case 2:

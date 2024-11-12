@@ -10,7 +10,7 @@ public class CustomerThread implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("这里是顾客登录线程线程:");
+        System.out.println("\n" + "这里是顾客登录功能:");
         Console.console_customer();
         Scanner sc = new Scanner(System.in);
         int customerChoice;
@@ -20,7 +20,15 @@ public class CustomerThread implements Runnable {
                     LoginControllerImpl loginController = new LoginControllerImpl();
                     boolean resultLogin = loginController.loginCustomer();
                     if (resultLogin) {
-                        System.out.println("顾客登录以后的逻辑!!!!!");
+                        CustomerFunctionThread customerFunction = new CustomerFunctionThread();
+                        Thread customerFunctionThread = new Thread(customerFunction);
+                        customerFunctionThread.start();
+
+                        try {
+                            customerFunctionThread.join();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     break;
                 case 2:
@@ -30,6 +38,6 @@ public class CustomerThread implements Runnable {
             }
             Console.console_customer();
         }
-        System.out.println("顾客登录的线程结束啦");
+        System.out.println("顾客登录的功能结束!");
     }
 }

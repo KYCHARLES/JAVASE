@@ -3,6 +3,7 @@ package dao.impl;
 import config.JdbcConfig;
 import dao.GetInformation;
 import pojo.Merchant;
+import pojo.MerchantView;
 import util.JdbcUtil;
 
 import java.sql.Connection;
@@ -81,6 +82,37 @@ public class GetInformationImpl implements GetInformation {
                         rs.getDate("update_date").toLocalDate()));
             }
             return merchantList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps, rs);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @Override
+    public List<MerchantView> getAllMerchantView(String merchantName) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select * from merchant_view where merchant_status > 1 and merchant_name like ?";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + merchantName + "%");
+            rs = ps.executeQuery();
+            List<MerchantView> merchantViewList = new ArrayList<>();
+            while (rs.next()) {
+                merchantViewList.add(new MerchantView(rs.getInt("merchant_id"),
+                                                        rs.getString("merchant_name"),
+                                                        rs.getInt("merchant_status")));
+            }
+            return merchantViewList;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class MerchantThread implements Runnable {
     @Override
     public void run() {
-        System.out.println("这里是商家登录线程线程:");
+        System.out.println("\n" + "这里是商家登录功能:");
         Console.console_merchant();
         Scanner sc = new Scanner(System.in);
         int merchantChoice;
@@ -30,6 +30,6 @@ public class MerchantThread implements Runnable {
             }
             Console.console_merchant();
         }
-        System.out.println("商家登录的线程结束啦");
+        System.out.println("商家登录的功能结束!");
     }
 }

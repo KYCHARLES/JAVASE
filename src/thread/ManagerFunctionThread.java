@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class ManagerFunctionThread implements Runnable {
     @Override
     public void run() {
+        System.out.println("\n" + "这里是管理员功能页面:");
         Console.console_manager_functions();
         Scanner scanner = new Scanner(System.in);
         GetInformationControllerImpl getInformationController = new GetInformationControllerImpl();
@@ -18,7 +19,7 @@ public class ManagerFunctionThread implements Runnable {
         while ((managerFunctionChoice = scanner.nextInt()) != 8) {
             switch (managerFunctionChoice) {
                 case 1:
-                    getInformationController.GrtAllMerchant();
+                    getInformationController.getAllMerchant();
                     break;
                 case 2:
                     break;
@@ -47,5 +48,6 @@ public class ManagerFunctionThread implements Runnable {
             Console.console_manager_functions();
 
         }
+        System.out.println("退出管理员功能页面!");
     }
 }
