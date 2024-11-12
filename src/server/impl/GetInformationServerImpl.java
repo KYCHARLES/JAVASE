@@ -20,4 +20,17 @@ public class GetInformationServerImpl implements GetInformationServer {
         }else
             System.out.println("没有相关信息!");
     }
+
+    @Override
+    public List<Merchant> getMerchantUnaudited() {
+        GetInformationImpl getInformation = new GetInformationImpl();
+        List<Merchant> merchantList = getInformation.getMerchantUnaudited();
+        if (merchantList != null) {
+            for (int i = 0; i < merchantList.size(); i++) {
+                System.out.println(i + " " + merchantList.get(i));
+            }
+        }else
+            System.out.println("没有相关信息!");
+        return merchantList;
+    }
 }
