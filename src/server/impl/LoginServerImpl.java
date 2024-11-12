@@ -8,15 +8,11 @@ public class LoginServerImpl implements LoginServer {
     public boolean loginCustomer(String username, String password) {
         LoginImpl loginImpl = new LoginImpl();
         boolean loginResult = loginImpl.loginCustomer(username, password);
-        if (loginResult) {
+        if (loginResult)
             System.out.println("登录成功!");
-            return true;
-        }
-        else {
+        else
             System.out.println("登录失败,请检查你的用户信息!");
-            return false;
-        }
-
+        return loginResult;
     }
 
     @Override
@@ -38,5 +34,16 @@ public class LoginServerImpl implements LoginServer {
                 break;
         }
         return true;
+    }
+
+    @Override
+    public boolean loginManager(String username, String password) {
+        LoginImpl loginImpl = new LoginImpl();
+        boolean loginResult = loginImpl.loginManager(username, password);
+        if (loginResult)
+            System.out.println("登录成功!");
+        else
+            System.out.println("登录失败,请检查你的用户信息");
+        return loginResult;
     }
 }

@@ -12,9 +12,9 @@ public class MerchantThread implements Runnable {
         System.out.println("这里是商家登录线程线程:");
         Console.console_merchant();
         Scanner sc = new Scanner(System.in);
-        int customerChoice;
-        while ((customerChoice = sc.nextInt()) != 3) {
-            switch (customerChoice) {
+        int merchantChoice;
+        while ((merchantChoice = sc.nextInt()) != 3) {
+            switch (merchantChoice) {
                 case 1:
                     LoginControllerImpl loginController = new LoginControllerImpl();
                     boolean resultLogin = loginController.loginMerchant();
@@ -30,6 +30,6 @@ public class MerchantThread implements Runnable {
             }
             Console.console_merchant();
         }
-        System.out.println("商家登录的线程结束啦,回到主线程!");
+        System.out.println("商家登录的线程结束啦");
     }
 }

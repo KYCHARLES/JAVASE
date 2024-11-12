@@ -30,6 +30,6 @@ public class CustomerThread implements Runnable {
             }
             Console.console_customer();
         }
-        System.out.println("顾客登录的线程结束啦,回到主线程!");
+        System.out.println("顾客登录的线程结束啦");
     }
 }

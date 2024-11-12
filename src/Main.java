@@ -1,4 +1,5 @@
 import thread.CustomerThread;
+import thread.ManagerThread;
 import thread.MerchantThread;
 import util.Console;
 
@@ -13,28 +14,38 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int consoleChoice;
-        while ((consoleChoice = sc.nextInt()) != 4) {
+        while ((consoleChoice = sc.nextInt()) != 5) {
             switch (consoleChoice) {
                 case 1:
-                    CustomerThread customerThread = new CustomerThread();
-                    Thread thread = new Thread(customerThread);
-                    thread.start();
+                    CustomerThread customer = new CustomerThread();
+                    Thread threadCustomer = new Thread(customer);
+                    threadCustomer.start();
                     try {
-                        thread.join();
+                        threadCustomer.join();
                     } catch (InterruptedException e) {
                        e.printStackTrace();
                     }
                     break;
                 case 2:
-                    MerchantThread merchantThread = new MerchantThread();
-                    Thread thread2 = new Thread(merchantThread);
-                    thread2.start();
+                    MerchantThread merchant = new MerchantThread();
+                    Thread threadMerchant = new Thread(merchant);
+                    threadMerchant.start();
                     try {
-                        thread2.join();
+                        threadMerchant.join();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     break;
+
+                case 4:
+                    ManagerThread manager = new ManagerThread();
+                    Thread threadManager = new Thread(manager);
+                    threadManager.start();
+                    try {
+                        threadManager.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
             }
             Console.console();
 

@@ -3,6 +3,7 @@ package dao.impl;
 import config.JdbcConfig;
 import dao.Login;
 import pojo.Customer;
+import pojo.Manager;
 import pojo.Merchant;
 import util.JdbcUtil;
 
@@ -87,6 +88,44 @@ public class LoginImpl implements Login {
                 return 1;
             }else
                 return 2;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps, rs);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+
+    @Override
+    public boolean loginManager(String username, String password) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select * from manager where manager_username=? and manager_password=?";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+
+            List<Manager> managerList = new ArrayList<>();
+            if (rs.next()) {
+                managerList.add(new Manager(rs.getInt("manager_id"),
+                                            rs.getString("manager_name"),
+                                            rs.getString("manager_username"),
+                                            rs.getString("manager_password"),
+                                            rs.getInt("manager_status"),
+                                            rs.getDate("create_date").toLocalDate(),
+                                            rs.getDate("update_date").toLocalDate()));
+            }
+            return !managerList.isEmpty();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
