@@ -35,10 +35,16 @@ public class Console {
         System.out.println("请选择你的操作:");
     }
 
-    public static void console_manager_1(){
+    public static void console_manager_functions(){
         System.out.println("--------------------欢迎来到仿美团外卖系统--------------------");
-        System.out.println("1.管理员登录");
-        System.out.println("2.退出");
+        System.out.println("1.查看所有的商家信息");
+        System.out.println("2.查看所有的骑手信息");
+        System.out.println("3.查看所有商家注册申请");
+        System.out.println("4.查看所有骑手注册申请");
+        System.out.println("5.查看所有菜品上架申请");
+        System.out.println("6.查看所有的订单信息");
+        System.out.println("7.查看所有的申诉");
+        System.out.println("8.退出");
         System.out.println("请选择你的操作:");
     }
 }

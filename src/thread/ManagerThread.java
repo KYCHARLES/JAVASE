@@ -20,7 +20,14 @@ public class ManagerThread implements Runnable {
                     boolean resultLogin = loginController.loginManager();
                     if (resultLogin) {
                         System.out.println("管理员登录以后的逻辑!!!!!");
-
+                        ManagerFunctionThread managerFunction = new ManagerFunctionThread();
+                        Thread managerFunctionThread = new Thread(managerFunction);
+                        managerFunctionThread.start();
+                        try {
+                            managerFunctionThread.join();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     break;
 
