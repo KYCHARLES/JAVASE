@@ -17,9 +17,10 @@ public class MerchantThread implements Runnable {
             switch (customerChoice) {
                 case 1:
                     LoginControllerImpl loginController = new LoginControllerImpl();
-                    boolean resultLogin = loginController.loginCustomer();
+                    boolean resultLogin = loginController.loginMerchant();
                     if (resultLogin) {
                         System.out.println("商家登录以后的逻辑!!!!!");
+
                     }
                     break;
                 case 2:

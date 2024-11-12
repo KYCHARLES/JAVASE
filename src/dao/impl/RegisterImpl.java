@@ -28,7 +28,7 @@ public class RegisterImpl implements Register {
 
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("您输入的电话号码已经注册!");
             return false;
         }finally {
             try {
@@ -62,7 +62,7 @@ public class RegisterImpl implements Register {
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("您输入的电话号码已经注册!");
             return false;
         }finally {
             try {
