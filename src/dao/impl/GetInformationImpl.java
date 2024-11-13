@@ -3,6 +3,7 @@ package dao.impl;
 import config.JdbcConfig;
 import dao.GetInformation;
 import pojo.Dish;
+import pojo.DishView;
 import pojo.Merchant;
 import pojo.MerchantView;
 import util.JdbcUtil;
@@ -165,5 +166,39 @@ public class GetInformationImpl implements GetInformation {
             }
         }
 
+    }
+
+    @Override
+    public List<DishView> getAllDishView(String dishName) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select * from dish_view where dish_name like ?";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + dishName + "%");
+            rs = ps.executeQuery();
+            List<DishView> dishViewList = new ArrayList<>();
+            while (rs.next()) {
+                dishViewList.add(new DishView(rs.getInt("dish_id"),
+                                                rs.getInt("merchant_id"),
+                                                rs.getString("dish_name"),
+                                                rs.getString("dish_description"),
+                                                rs.getInt("dish_price"),
+                                                rs.getString("merchant_name")));
+            }
+            return dishViewList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps, rs);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

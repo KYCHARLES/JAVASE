@@ -3,6 +3,7 @@ package server.impl;
 import dao.GetInformation;
 import dao.impl.GetInformationImpl;
 import pojo.Dish;
+import pojo.DishView;
 import pojo.Merchant;
 import pojo.MerchantView;
 import server.GetInformationServer;
@@ -60,5 +61,18 @@ public class GetInformationServerImpl implements GetInformationServer {
         }else
             System.out.println("没有相关信息!");
         return dishList;
+    }
+
+    @Override
+    public List<DishView> getAllDishView(String dishName) {
+        GetInformationImpl getInformation = new GetInformationImpl();
+        List<DishView> dishViewList = getInformation.getAllDishView(dishName);
+        if (dishViewList != null) {
+            for (int i = 0; i < dishViewList.size(); i++) {
+                System.out.println(i + " " + dishViewList.get(i));
+            }
+        }else
+            System.out.println("搜索异常,请重新尝试!");
+        return dishViewList;
     }
 }

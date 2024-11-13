@@ -1,4 +1,4 @@
-package thread;
+package thread.merchant;
 
 import controller.impl.DishManageControllerImpl;
 import dao.impl.MerchantStatusImpl;

@@ -1,6 +1,6 @@
-import thread.CustomerThread;
-import thread.ManagerThread;
-import thread.MerchantThread;
+import thread.customer.CustomerThread;
+import thread.manager.ManagerThread;
+import thread.merchant.MerchantThread;
 import util.Console;
 
 import java.util.Scanner;

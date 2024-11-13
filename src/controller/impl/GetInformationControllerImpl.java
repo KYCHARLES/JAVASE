@@ -2,6 +2,7 @@ package controller.impl;
 
 import controller.GetInformationController;
 import pojo.Dish;
+import pojo.DishView;
 import pojo.Merchant;
 import pojo.MerchantView;
 import server.GetInformationServer;
@@ -38,4 +39,13 @@ public class GetInformationControllerImpl implements GetInformationController {
         GetInformationServerImpl getInformationServerImpl = new GetInformationServerImpl();
         return getInformationServerImpl.getDishUnaudited();
     }
+
+    @Override
+    public List<DishView> getAllDishView(String dishName) {
+        System.out.println("\"--------------------所有的菜品信息--------------------\"");
+        GetInformationServerImpl getInformationServerImpl = new GetInformationServerImpl();
+        return getInformationServerImpl.getAllDishView(dishName);
+    }
+
+
 }

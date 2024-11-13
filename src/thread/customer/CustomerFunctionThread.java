@@ -1,4 +1,4 @@
-package thread;
+package thread.customer;
 
 import pojo.Customer;
 import util.Console;
@@ -34,6 +34,15 @@ public class CustomerFunctionThread implements Runnable {
                     }
                     break;
                 case 3:
+                    CustomerSearchDishThread customerSearchDish = new CustomerSearchDishThread();
+                    Thread customerSearchDishThread = new Thread(customerSearchDish);
+                    customerSearchDishThread.start();
+
+                    try {
+                        customerSearchDishThread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     break;
                 case 4:
                     break;

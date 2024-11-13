@@ -1,4 +1,4 @@
-package thread;
+package thread.manager;
 
 import controller.impl.AuditInformationControllerImpl;
 import controller.impl.GetInformationControllerImpl;

@@ -1,7 +1,6 @@
-package thread;
+package thread.manager;
 
 import controller.impl.LoginControllerImpl;
-import controller.impl.RegisterControllerImpl;
 import util.Console;
 
 import java.util.Scanner;

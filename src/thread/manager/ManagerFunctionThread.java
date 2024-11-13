@@ -1,6 +1,5 @@
-package thread;
+package thread.manager;
 
-import controller.GetInformationController;
 import controller.impl.GetInformationControllerImpl;
 import pojo.Dish;
 import pojo.Merchant;

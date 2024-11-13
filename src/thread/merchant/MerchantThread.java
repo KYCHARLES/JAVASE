@@ -1,4 +1,4 @@
-package thread;
+package thread.merchant;
 
 import controller.impl.LoginControllerImpl;
 import controller.impl.RegisterControllerImpl;
