@@ -1,6 +1,7 @@
 package thread;
 
 import controller.impl.DishManageControllerImpl;
+import dao.impl.MerchantStatusImpl;
 import pojo.Merchant;
 import util.Console;
 
@@ -34,5 +35,8 @@ public class MerchantFunctionThread implements Runnable{
             }
             Console.console_merchant_functions();
         }
+        MerchantStatusImpl merchantStatusImpl = new MerchantStatusImpl();
+        merchantStatusImpl.MerchantRest(merchant.getId());
+        System.out.println("退出商家功能页面!");
     }
 }
