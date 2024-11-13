@@ -15,4 +15,5 @@ public interface GetInformationController {
 
     public List<Dish> getDishUnaudited();
     public List<DishView> getAllDishView(String dishName);
+    public List<DishView> getDishViewByMerchantId(int merchantId);
 }

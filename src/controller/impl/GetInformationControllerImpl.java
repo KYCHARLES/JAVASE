@@ -11,40 +11,41 @@ import server.impl.GetInformationServerImpl;
 import java.util.List;
 
 public class GetInformationControllerImpl implements GetInformationController {
-
+    GetInformationServer getInformationServer = new GetInformationServerImpl();
     @Override
     public void getAllMerchant() {
         System.out.println("\"--------------------所有的商家信息--------------------\"");
-        GetInformationServer getInformationServer = new GetInformationServerImpl();
         getInformationServer.getAllMerchant();
     }
 
     @Override
     public List<Merchant> getMerchantUnaudited() {
         System.out.println("\"--------------------所有未审核的商家信息--------------------\"");
-        GetInformationServer getInformationServer = new GetInformationServerImpl();
         return getInformationServer.getMerchantUnaudited();
     }
 
     @Override
     public List<MerchantView> getAllMerchantView(String merchantName) {
         System.out.println("\"--------------------所有的商家信息--------------------\"");
-        GetInformationServer getInformationServer = new GetInformationServerImpl();
         return getInformationServer.getAllMerchantView(merchantName);
     }
 
     @Override
     public List<Dish> getDishUnaudited() {
         System.out.println("\"--------------------所有未审核的菜品信息--------------------\"");
-        GetInformationServerImpl getInformationServerImpl = new GetInformationServerImpl();
-        return getInformationServerImpl.getDishUnaudited();
+        return getInformationServer.getDishUnaudited();
     }
 
     @Override
     public List<DishView> getAllDishView(String dishName) {
         System.out.println("\"--------------------所有的菜品信息--------------------\"");
-        GetInformationServerImpl getInformationServerImpl = new GetInformationServerImpl();
-        return getInformationServerImpl.getAllDishView(dishName);
+        return getInformationServer.getAllDishView(dishName);
+    }
+
+    @Override
+    public List<DishView> getDishViewByMerchantId(int merchantId) {
+        System.out.println("\"--------------------所有的菜品信息--------------------\"");
+        return getInformationServer.getDishViewByMerchantId(merchantId);
     }
 
 

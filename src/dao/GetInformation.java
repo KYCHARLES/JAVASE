@@ -14,4 +14,5 @@ public interface GetInformation {
     public List<MerchantView> getAllMerchantView(String merchantName);
     public List<Dish> getDishUnaudited();
     public List<DishView> getAllDishView(String dishName);
+    public List<DishView> getDishViewByMerchantId(int merchantId);
 }

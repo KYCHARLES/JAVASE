@@ -201,4 +201,32 @@ public class GetInformationImpl implements GetInformation {
             }
         }
     }
+
+    @Override
+    public List<DishView> getDishViewByMerchantId(int merchantId) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select * from dish_view where merchant_id = ?";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, merchantId);
+            rs = ps.executeQuery();
+            List<DishView> dishViewList = new ArrayList<>();
+            while (rs.next()) {
+                dishViewList.add(new DishView(rs.getInt("dish_id"),
+                        rs.getInt("merchant_id"),
+                        rs.getString("dish_name"),
+                        rs.getString("dish_description"),
+                        rs.getInt("dish_price"),
+                        rs.getString("merchant_name")));
+            }
+            return dishViewList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

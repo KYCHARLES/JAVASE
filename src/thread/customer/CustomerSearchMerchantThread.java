@@ -32,7 +32,17 @@ public class CustomerSearchMerchantThread implements Runnable {
                 System.out.println("请你输入要搜索的店名(输入esc退出该功能):");
             }
             else if (Objects.equals(choice, "en")) {
+                System.out.println("请输入要进入的店铺的索引:");
+                int merchantChoice = scanner.nextInt();
+                CustomerEntryMerchantThread customerEntryMerchant = new CustomerEntryMerchantThread(merchantViewList.get(merchantChoice));
+                Thread customerEntryMerchantThread = new Thread(customerEntryMerchant);
+                customerEntryMerchantThread.start();
 
+                try {
+                    customerEntryMerchantThread.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }else{
                 System.out.println("你的输入有误,无法识别你要选择的功能,系统默认你要重新搜索!");
             }

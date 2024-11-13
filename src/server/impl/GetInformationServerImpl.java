@@ -11,9 +11,10 @@ import server.GetInformationServer;
 import java.util.List;
 
 public class GetInformationServerImpl implements GetInformationServer {
+    GetInformation getInformation = new GetInformationImpl();
     @Override
     public void getAllMerchant() {
-        GetInformation getInformation = new GetInformationImpl();
+
 
         List<Merchant> merchantList = getInformation.getAllMerchant();
         if (merchantList != null) {
@@ -26,7 +27,6 @@ public class GetInformationServerImpl implements GetInformationServer {
 
     @Override
     public List<Merchant> getMerchantUnaudited() {
-        GetInformationImpl getInformation = new GetInformationImpl();
         List<Merchant> merchantList = getInformation.getMerchantUnaudited();
         if (merchantList != null) {
             for (int i = 0; i < merchantList.size(); i++) {
@@ -39,7 +39,7 @@ public class GetInformationServerImpl implements GetInformationServer {
 
     @Override
     public List<MerchantView> getAllMerchantView(String merchantName) {
-        GetInformationImpl getInformation = new GetInformationImpl();
+
         List<MerchantView> merchantViewList = getInformation.getAllMerchantView(merchantName);
         if (merchantViewList != null) {
             for (int i = 0; i < merchantViewList.size(); i++) {
@@ -65,8 +65,19 @@ public class GetInformationServerImpl implements GetInformationServer {
 
     @Override
     public List<DishView> getAllDishView(String dishName) {
-        GetInformationImpl getInformation = new GetInformationImpl();
         List<DishView> dishViewList = getInformation.getAllDishView(dishName);
+        if (dishViewList != null) {
+            for (int i = 0; i < dishViewList.size(); i++) {
+                System.out.println(i + " " + dishViewList.get(i));
+            }
+        }else
+            System.out.println("搜索异常,请重新尝试!");
+        return dishViewList;
+    }
+
+    @Override
+    public List<DishView> getDishViewByMerchantId(int merchantId) {
+        List<DishView> dishViewList = getInformation.getDishViewByMerchantId(merchantId);
         if (dishViewList != null) {
             for (int i = 0; i < dishViewList.size(); i++) {
                 System.out.println(i + " " + dishViewList.get(i));
