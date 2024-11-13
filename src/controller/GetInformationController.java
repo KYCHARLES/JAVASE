@@ -1,5 +1,6 @@
 package controller;
 
+import pojo.Dish;
 import pojo.Merchant;
 import pojo.MerchantView;
 
@@ -10,4 +11,6 @@ public interface GetInformationController {
     public List<Merchant> getMerchantUnaudited();
 
     public List<MerchantView> getAllMerchantView(String merchantName);
+
+    public List<Dish> getDishUnaudited();
 }

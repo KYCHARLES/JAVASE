@@ -13,4 +13,14 @@ public class AudiInformationServerImpl implements AuditInformationServer {
         }else
             System.out.println("审核失败!");
     }
+
+    @Override
+    public void auditDish(int dishId) {
+        AuditInformationImpl auditInformation = new AuditInformationImpl();
+        boolean resultAuditDish = auditInformation.AuditDish(dishId);
+        if (resultAuditDish) {
+            System.out.println("审核成功!");
+        }else
+            System.out.println("审核失败!");
+    }
 }

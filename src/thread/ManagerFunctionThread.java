@@ -2,6 +2,7 @@ package thread;
 
 import controller.GetInformationController;
 import controller.impl.GetInformationControllerImpl;
+import pojo.Dish;
 import pojo.Merchant;
 import util.Console;
 
@@ -26,11 +27,11 @@ public class ManagerFunctionThread implements Runnable {
                 case 3:
 
                     List<Merchant> merchantList = getInformationController.getMerchantUnaudited();
-                    ManagerAuditMerchantThread managerAuditMerchantThread = new ManagerAuditMerchantThread(merchantList);
-                    Thread managerAuditThread = new Thread(managerAuditMerchantThread);
-                    managerAuditThread.start();
+                    ManagerAuditMerchantThread managerAuditMerchant = new ManagerAuditMerchantThread(merchantList);
+                    Thread managerAuditMerchantThread = new Thread(managerAuditMerchant);
+                    managerAuditMerchantThread.start();
                     try {
-                        managerAuditThread.join();
+                        managerAuditMerchantThread.join();
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -38,6 +39,16 @@ public class ManagerFunctionThread implements Runnable {
                 case 4:
                     break;
                 case 5:
+                    List<Dish> dishList = getInformationController.getDishUnaudited();
+                    ManagerAuditDishThread managerAuditDish = new ManagerAuditDishThread(dishList);
+                    Thread managerAuditDishThread = new Thread(managerAuditDish);
+                    managerAuditDishThread.start();
+
+                    try {
+                        managerAuditDishThread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     break;
                 case 6:
                     break;

@@ -9,4 +9,10 @@ public class AuditInformationControllerImpl implements AuditInformationControlle
         AudiInformationServerImpl audiInformationServer = new AudiInformationServerImpl();
         audiInformationServer.auditMerchant(merchantId);
     }
+
+    @Override
+    public void AuditDish(int dishId) {
+        AudiInformationServerImpl audiInformationServer = new AudiInformationServerImpl();
+        audiInformationServer.auditDish(dishId);
+    }
 }

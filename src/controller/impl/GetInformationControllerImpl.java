@@ -1,6 +1,7 @@
 package controller.impl;
 
 import controller.GetInformationController;
+import pojo.Dish;
 import pojo.Merchant;
 import pojo.MerchantView;
 import server.GetInformationServer;
@@ -29,5 +30,12 @@ public class GetInformationControllerImpl implements GetInformationController {
         System.out.println("\"--------------------所有的商家信息--------------------\"");
         GetInformationServer getInformationServer = new GetInformationServerImpl();
         return getInformationServer.getAllMerchantView(merchantName);
+    }
+
+    @Override
+    public List<Dish> getDishUnaudited() {
+        System.out.println("\"--------------------所有未审核的菜品信息--------------------\"");
+        GetInformationServerImpl getInformationServerImpl = new GetInformationServerImpl();
+        return getInformationServerImpl.getDishUnaudited();
     }
 }

@@ -2,6 +2,7 @@ package dao.impl;
 
 import config.JdbcConfig;
 import dao.GetInformation;
+import pojo.Dish;
 import pojo.Merchant;
 import pojo.MerchantView;
 import util.JdbcUtil;
@@ -12,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static oracle.net.aso.C00.p;
 
 public class GetInformationImpl implements GetInformation {
     @Override
@@ -123,5 +126,44 @@ public class GetInformationImpl implements GetInformation {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    @Override
+    public List<Dish> getDishUnaudited() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select * from dish where dish_status = 1";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            List<Dish> dishList = new ArrayList<>();
+            while (rs.next()){
+                dishList.add(new Dish(rs.getInt("dish_id"),
+                                        rs.getInt("merchant_id"),
+                                        rs.getString("dish_name"),
+                                        rs.getString("dish_description"),
+                                        rs.getInt("dish_price"),
+                                        rs.getInt("dish_type"),
+                                        rs.getInt("dish_status"),
+                                        rs.getDate("create_date").toLocalDate(),
+                                        rs.getDate("update_date").toLocalDate()));
+            }
+            return dishList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps, rs);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 }

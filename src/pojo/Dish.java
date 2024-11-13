@@ -2,7 +2,7 @@ package pojo;
 
 import java.time.LocalDate;
 
-public class dish {
+public class Dish {
     private int id;
     private int merchant_id;
     private String name;
@@ -13,10 +13,10 @@ public class dish {
     private LocalDate createDate;
     private LocalDate updateDate;
 
-    public dish() {
+    public Dish() {
     }
 
-    public dish(int id, int merchant_id, String name, String description, int price, int type, int status, LocalDate createDate, LocalDate updateDate) {
+    public Dish(int id, int merchant_id, String name, String description, int price, int type, int status, LocalDate createDate, LocalDate updateDate) {
         this.id = id;
         this.merchant_id = merchant_id;
         this.name = name;
