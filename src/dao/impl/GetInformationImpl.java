@@ -2,10 +2,7 @@ package dao.impl;
 
 import config.JdbcConfig;
 import dao.GetInformation;
-import pojo.Dish;
-import pojo.DishView;
-import pojo.Merchant;
-import pojo.MerchantView;
+import pojo.*;
 import util.JdbcUtil;
 
 import java.sql.Connection;
@@ -224,6 +221,36 @@ public class GetInformationImpl implements GetInformation {
                         rs.getString("merchant_name")));
             }
             return dishViewList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<Address> getAddressByCustomerId(int CustomerId) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select * from address where customer_id = ?";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, CustomerId);
+            rs = ps.executeQuery();
+            List<Address> addressList = new ArrayList<>();
+            while (rs.next()) {
+                addressList.add(new Address(rs.getInt("address_id"),
+                                            rs.getInt("customer_id"),
+                                            rs.getString("address_location"),
+                                            rs.getString("address_recipient"),
+                                            rs.getString("address_phoneNumber"),
+                                            rs.getInt("address_status"),
+                                            rs.getDate("create_date").toLocalDate(),
+                                            rs.getDate("update_date").toLocalDate()));
+            }
+            return addressList;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

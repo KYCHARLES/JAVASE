@@ -1,8 +1,11 @@
 package thread.customer.Function;
 
+import controller.impl.GetInformationControllerImpl;
+import pojo.Address;
 import pojo.Customer;
 import util.Console;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class CustomerFunction  {
@@ -21,6 +24,8 @@ public class CustomerFunction  {
         while ((customerFunctionChoice = scanner.nextInt()) != 5) {
             switch (customerFunctionChoice) {
                 case 1:
+                    CustomerViewAddress customerViewAddress = new CustomerViewAddress(customer);
+                    customerViewAddress.customerViewAddress();
                     break;
                 case 2:
                     CustomerSearchMerchant customerSearchMerchant = new CustomerSearchMerchant();

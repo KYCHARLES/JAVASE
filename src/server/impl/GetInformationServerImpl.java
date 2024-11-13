@@ -2,10 +2,7 @@ package server.impl;
 
 import dao.GetInformation;
 import dao.impl.GetInformationImpl;
-import pojo.Dish;
-import pojo.DishView;
-import pojo.Merchant;
-import pojo.MerchantView;
+import pojo.*;
 import server.GetInformationServer;
 
 import java.util.List;
@@ -85,5 +82,17 @@ public class GetInformationServerImpl implements GetInformationServer {
         }else
             System.out.println("搜索异常,请重新尝试!");
         return dishViewList;
+    }
+
+    @Override
+    public List<Address> getAddressByCustomerId(int CustomerId) {
+        List<Address> addressList = getInformation.getAddressByCustomerId(CustomerId);
+        if (addressList != null) {
+            for (int i = 0; i < addressList.size(); i++) {
+                if (addressList.get(i).getStatus() == 1) System.out.println(i + " " + addressList.get(i));
+            }
+        }else
+            System.out.println("没有查询结果!");
+        return addressList;
     }
 }

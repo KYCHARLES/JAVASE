@@ -1,10 +1,7 @@
 package controller.impl;
 
 import controller.GetInformationController;
-import pojo.Dish;
-import pojo.DishView;
-import pojo.Merchant;
-import pojo.MerchantView;
+import pojo.*;
 import server.GetInformationServer;
 import server.impl.GetInformationServerImpl;
 
@@ -46,6 +43,12 @@ public class GetInformationControllerImpl implements GetInformationController {
     public List<DishView> getDishViewByMerchantId(int merchantId) {
         System.out.println("\"--------------------所有的菜品信息--------------------\"");
         return getInformationServer.getDishViewByMerchantId(merchantId);
+    }
+
+    @Override
+    public List<Address> getAddressByCustomerId(int customerId) {
+        System.out.println("\"--------------------所有的地址信息--------------------\"");
+        return getInformationServer.getAddressByCustomerId(customerId);
     }
 
 

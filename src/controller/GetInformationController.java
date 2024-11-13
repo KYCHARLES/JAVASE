@@ -1,9 +1,6 @@
 package controller;
 
-import pojo.Dish;
-import pojo.DishView;
-import pojo.Merchant;
-import pojo.MerchantView;
+import pojo.*;
 
 import java.util.List;
 
@@ -16,4 +13,6 @@ public interface GetInformationController {
     public List<Dish> getDishUnaudited();
     public List<DishView> getAllDishView(String dishName);
     public List<DishView> getDishViewByMerchantId(int merchantId);
+
+    public List<Address> getAddressByCustomerId(int customerId);
 }
