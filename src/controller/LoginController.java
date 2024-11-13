@@ -1,7 +1,10 @@
 package controller;
 
+import pojo.Customer;
+import pojo.Merchant;
+
 public interface LoginController {
-    public boolean loginCustomer();
-    public boolean loginMerchant();
+    public Customer loginCustomer();
+    public Merchant loginMerchant();
     public boolean loginManager();
 }

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class LoginImpl implements Login {
     @Override
-    public boolean loginCustomer(String username, String password) {
+    public List<Customer> loginCustomer(String username, String password) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -39,7 +39,7 @@ public class LoginImpl implements Login {
                                                 rs.getDate("create_date").toLocalDate(),
                                                 rs.getDate("update_date").toLocalDate()));
             }
-            return !customerList.isEmpty();
+            return customerList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
@@ -52,7 +52,7 @@ public class LoginImpl implements Login {
     }
 
     @Override
-    public int loginMerchant(String username, String password) {
+    public List<Merchant> loginMerchant(String username, String password) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -80,14 +80,7 @@ public class LoginImpl implements Login {
                         rs.getDate("update_date").toLocalDate()));
             }
 
-            if (merchantList.isEmpty()) {
-                return -1;
-            }else if (merchantList.getFirst().getStatus() == 0) {
-                return 0;
-            }else if (merchantList.getFirst().getStatus() == 1) {
-                return 1;
-            }else
-                return 2;
+            return merchantList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {

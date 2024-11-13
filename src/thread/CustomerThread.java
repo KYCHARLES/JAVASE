@@ -2,6 +2,7 @@ package thread;
 
 import controller.impl.LoginControllerImpl;
 import controller.impl.RegisterControllerImpl;
+import pojo.Customer;
 import util.Console;
 
 import java.util.Scanner;
@@ -18,9 +19,9 @@ public class CustomerThread implements Runnable {
             switch (customerChoice) {
                 case 1:
                     LoginControllerImpl loginController = new LoginControllerImpl();
-                    boolean resultLogin = loginController.loginCustomer();
-                    if (resultLogin) {
-                        CustomerFunctionThread customerFunction = new CustomerFunctionThread();
+                    Customer resultLogin = loginController.loginCustomer();
+                    if (resultLogin != null) {
+                        CustomerFunctionThread customerFunction = new CustomerFunctionThread(resultLogin);
                         Thread customerFunctionThread = new Thread(customerFunction);
                         customerFunctionThread.start();
 

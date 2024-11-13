@@ -1,10 +1,15 @@
 package thread;
 
+import pojo.Customer;
 import util.Console;
 
 import java.util.Scanner;
 
 public class CustomerFunctionThread implements Runnable {
+    private Customer customer;
+    public CustomerFunctionThread(Customer customer) {
+        this.customer = customer;
+    }
     @Override
     public void run() {
         System.out.println("\n" + "这里是顾客功能页面:");

@@ -2,11 +2,13 @@ package thread;
 
 import controller.impl.LoginControllerImpl;
 import controller.impl.RegisterControllerImpl;
+import pojo.Merchant;
 import util.Console;
 
 import java.util.Scanner;
 
 public class MerchantThread implements Runnable {
+
     @Override
     public void run() {
         System.out.println("\n" + "这里是商家登录功能:");
@@ -17,8 +19,8 @@ public class MerchantThread implements Runnable {
             switch (merchantChoice) {
                 case 1:
                     LoginControllerImpl loginController = new LoginControllerImpl();
-                    boolean resultLogin = loginController.loginMerchant();
-                    if (resultLogin) {
+                    Merchant resultLogin = loginController.loginMerchant();
+                    if (resultLogin != null) {
                         System.out.println("商家登录以后的逻辑!!!!!");
 
                     }

@@ -1,39 +1,49 @@
 package server.impl;
 
 import dao.impl.LoginImpl;
+import pojo.Customer;
+import pojo.Merchant;
 import server.LoginServer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginServerImpl implements LoginServer {
     @Override
-    public boolean loginCustomer(String username, String password) {
+    public Customer loginCustomer(String username, String password) {
         LoginImpl loginImpl = new LoginImpl();
-        boolean loginResult = loginImpl.loginCustomer(username, password);
-        if (loginResult)
+        List<Customer> customerList = loginImpl.loginCustomer(username, password);
+        Customer loginResult = null;
+        if (!customerList.isEmpty()) {
             System.out.println("登录成功!");
-        else
+            loginResult = customerList.getFirst();
+        }else
             System.out.println("登录失败,请检查你的用户信息!");
         return loginResult;
     }
 
     @Override
-    public boolean loginMerchant(String username, String password) {
+    public Merchant loginMerchant(String username, String password) {
 
         LoginImpl loginImpl = new LoginImpl();
-        int loginResult = loginImpl.loginMerchant(username, password);
-        switch (loginResult) {
-            case -1:
-                System.out.println("登录失败,请检查你的用户信息.");
-            case 0:
-                System.out.println("登录失败,你的账号已经被封禁!");
-                return false;
-            case 1:
-                System.out.println("你的账号等待管理员审核中,请耐心等候");
-                return false;
-            case 2:
-                System.out.println("登录成功");
-                break;
-        }
-        return true;
+        List<Merchant> merchantList = loginImpl.loginMerchant(username, password);
+        Merchant loginResult = null;
+        if (!merchantList.isEmpty()) {
+            loginResult = merchantList.getFirst();
+            switch (loginResult.getStatus()){
+                case 0:
+                    System.out.println("登录失败,你的账号已经被封禁!");
+                    break;
+                case 1:
+                    System.out.println("你的账号等待管理员审核中,请耐心等候");
+                    break;
+                case 2:
+                    System.out.println("登录成功");
+                    break;
+            }
+        }else
+            System.out.println("登录失败,请检查你的用户信息!");
+        return loginResult;
     }
 
     @Override
