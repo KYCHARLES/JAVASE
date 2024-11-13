@@ -21,7 +21,15 @@ public class MerchantThread implements Runnable {
                     LoginControllerImpl loginController = new LoginControllerImpl();
                     Merchant resultLogin = loginController.loginMerchant();
                     if (resultLogin != null) {
-                        System.out.println("商家登录以后的逻辑!!!!!");
+                        MerchantFunctionThread merchantFunction = new MerchantFunctionThread(resultLogin);
+                        Thread merchantFunctionThread = new Thread(merchantFunction);
+                        merchantFunctionThread.start();
+
+                        try {
+                            merchantFunctionThread.join();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
 
                     }
                     break;
