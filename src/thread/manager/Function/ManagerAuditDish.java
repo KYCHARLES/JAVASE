@@ -1,4 +1,4 @@
-package thread.manager;
+package thread.manager.Function;
 
 import controller.impl.AuditInformationControllerImpl;
 import controller.impl.GetInformationControllerImpl;
@@ -7,13 +7,13 @@ import pojo.Dish;
 import java.util.List;
 import java.util.Scanner;
 
-public class ManagerAuditDishThread implements Runnable {
+public class ManagerAuditDish  {
     private List<Dish> dishes;
-    public ManagerAuditDishThread(List<Dish> dishes) {
+    public ManagerAuditDish(List<Dish> dishes) {
         this.dishes = dishes;
     }
-    @Override
-    public void run() {
+
+    public void managerAuditDish() {
         System.out.println("\n" + "这里是管理员审核菜品的功能:");
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入确认通过的菜品的索引信息(输入-1退出)");

@@ -4,6 +4,7 @@ import controller.impl.LoginControllerImpl;
 import controller.impl.RegisterControllerImpl;
 import dao.impl.MerchantStatusImpl;
 import pojo.Merchant;
+import thread.merchant.Function.MerchantFunction;
 import util.Console;
 
 import java.util.Scanner;
@@ -25,15 +26,8 @@ public class MerchantThread implements Runnable {
                         MerchantStatusImpl merchantStatus = new MerchantStatusImpl();
                         merchantStatus.MerchantBusiness(resultLogin.getId());
 
-                        MerchantFunctionThread merchantFunction = new MerchantFunctionThread(resultLogin);
-                        Thread merchantFunctionThread = new Thread(merchantFunction);
-                        merchantFunctionThread.start();
-
-                        try {
-                            merchantFunctionThread.join();
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+                        MerchantFunction merchantFunction = new MerchantFunction(resultLogin);
+                        merchantFunction.merchantFunction();
 
                     }
                     break;

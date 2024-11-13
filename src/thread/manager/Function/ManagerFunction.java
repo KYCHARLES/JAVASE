@@ -1,4 +1,4 @@
-package thread.manager;
+package thread.manager.Function;
 
 import controller.impl.GetInformationControllerImpl;
 import pojo.Dish;
@@ -8,9 +8,9 @@ import util.Console;
 import java.util.List;
 import java.util.Scanner;
 
-public class ManagerFunctionThread implements Runnable {
-    @Override
-    public void run() {
+public class ManagerFunction {
+
+    public void managerFunction() {
         System.out.println("\n" + "这里是管理员功能页面:");
         Console.console_manager_functions();
         Scanner scanner = new Scanner(System.in);
@@ -26,28 +26,15 @@ public class ManagerFunctionThread implements Runnable {
                 case 3:
 
                     List<Merchant> merchantList = getInformationController.getMerchantUnaudited();
-                    ManagerAuditMerchantThread managerAuditMerchant = new ManagerAuditMerchantThread(merchantList);
-                    Thread managerAuditMerchantThread = new Thread(managerAuditMerchant);
-                    managerAuditMerchantThread.start();
-                    try {
-                        managerAuditMerchantThread.join();
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+                    ManagerAuditMerchant managerAuditMerchant = new ManagerAuditMerchant(merchantList);
+                    managerAuditMerchant.managerAuditMerchant();
                     break;
                 case 4:
                     break;
                 case 5:
                     List<Dish> dishList = getInformationController.getDishUnaudited();
-                    ManagerAuditDishThread managerAuditDish = new ManagerAuditDishThread(dishList);
-                    Thread managerAuditDishThread = new Thread(managerAuditDish);
-                    managerAuditDishThread.start();
-
-                    try {
-                        managerAuditDishThread.join();
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+                    ManagerAuditDish managerAuditDish = new ManagerAuditDish(dishList);
+                    managerAuditDish.managerAuditDish();
                     break;
                 case 6:
                     break;

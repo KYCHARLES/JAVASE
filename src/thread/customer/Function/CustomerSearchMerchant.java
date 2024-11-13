@@ -1,4 +1,4 @@
-package thread.customer;
+package thread.customer.Function;
 
 import controller.impl.GetInformationControllerImpl;
 import pojo.MerchantView;
@@ -8,11 +8,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class CustomerSearchMerchantThread implements Runnable {
+public class CustomerSearchMerchant {
 
     List<MerchantView> merchantViewList = new ArrayList<>();
-    @Override
-    public void run() {
+    public void  customerSearchMerchant() {
         GetInformationControllerImpl getInformationController = new GetInformationControllerImpl();
 
         System.out.println("\n" + "这里是顾客搜索店铺的功能:");
@@ -39,15 +38,8 @@ public class CustomerSearchMerchantThread implements Runnable {
                 MerchantView merchantView = merchantViewList.get(merchantChoice);
 
                 if(merchantView.getStatus() == 2) {
-                    CustomerEntryMerchantThread customerEntryMerchant = new CustomerEntryMerchantThread(merchantViewList.get(merchantChoice));
-                    Thread customerEntryMerchantThread = new Thread(customerEntryMerchant);
-                    customerEntryMerchantThread.start();
-
-                    try {
-                        customerEntryMerchantThread.join();
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+                    CustomerEntryMerchant customerEntryMerchant = new CustomerEntryMerchant(merchantViewList.get(merchantChoice));
+                    customerEntryMerchant.customerEntryMerchant();
                 }else
                     System.out.println("店铺已经休息,无法进入点餐!你可以重新搜索店铺:");
             }else{

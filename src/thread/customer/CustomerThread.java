@@ -3,6 +3,7 @@ package thread.customer;
 import controller.impl.LoginControllerImpl;
 import controller.impl.RegisterControllerImpl;
 import pojo.Customer;
+import thread.customer.Function.CustomerFunction;
 import util.Console;
 
 import java.util.Scanner;
@@ -21,15 +22,8 @@ public class CustomerThread implements Runnable {
                     LoginControllerImpl loginController = new LoginControllerImpl();
                     Customer resultLogin = loginController.loginCustomer();
                     if (resultLogin != null) {
-                        CustomerFunctionThread customerFunction = new CustomerFunctionThread(resultLogin);
-                        Thread customerFunctionThread = new Thread(customerFunction);
-                        customerFunctionThread.start();
-
-                        try {
-                            customerFunctionThread.join();
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+                        CustomerFunction customerFunction = new CustomerFunction(resultLogin);
+                        customerFunction.customerFunction();
                     }
                     break;
                 case 2:

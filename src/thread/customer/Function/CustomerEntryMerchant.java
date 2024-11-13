@@ -1,20 +1,18 @@
-package thread.customer;
+package thread.customer.Function;
 
 import controller.impl.GetInformationControllerImpl;
 import pojo.DishView;
-import pojo.Merchant;
 import pojo.MerchantView;
 
 import java.util.*;
 
-public class CustomerEntryMerchantThread implements Runnable {
+public class CustomerEntryMerchant {
     private MerchantView merchantView;
-    public CustomerEntryMerchantThread(MerchantView merchantView) {
+    public CustomerEntryMerchant(MerchantView merchantView) {
         this.merchantView = merchantView;
     }
 
-    @Override
-    public void run() {
+    public void customerEntryMerchant() {
         System.out.println("--------------------欢迎来到" + merchantView.getName()+ "--------------------");
         GetInformationControllerImpl getInformationController = new GetInformationControllerImpl();
         List<DishView> dishViewList = getInformationController.getDishViewByMerchantId(merchantView.getId());

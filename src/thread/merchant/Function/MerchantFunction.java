@@ -1,4 +1,4 @@
-package thread.merchant;
+package thread.merchant.Function;
 
 import controller.impl.DishManageControllerImpl;
 import dao.impl.MerchantStatusImpl;
@@ -7,13 +7,13 @@ import util.Console;
 
 import java.util.Scanner;
 
-public class MerchantFunctionThread implements Runnable{
+public class MerchantFunction{
     private Merchant merchant;
-    public MerchantFunctionThread(Merchant merchant) {
+    public MerchantFunction(Merchant merchant) {
         this.merchant = merchant;
     }
-    @Override
-    public void run() {
+
+    public void merchantFunction() {
         System.out.println("\n" + "这里是商家的功能页面:");
         Console.console_merchant_functions();
         Scanner scanner = new Scanner(System.in);

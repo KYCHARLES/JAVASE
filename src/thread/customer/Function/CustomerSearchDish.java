@@ -1,4 +1,4 @@
-package thread.customer;
+package thread.customer.Function;
 
 import controller.impl.GetInformationControllerImpl;
 import pojo.DishView;
@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class CustomerSearchDishThread implements Runnable {
+public class CustomerSearchDish {
 
     List<DishView> dishViewList = new ArrayList<>();
-    @Override
-    public void run() {
+
+    public void customerSearchDish() {
         GetInformationControllerImpl getInformationController = new GetInformationControllerImpl();
         System.out.println("\n" + "这里是顾客搜索菜品的功能:");
         System.out.println("请你输入要搜索的菜(输入esc退出该功能):");
