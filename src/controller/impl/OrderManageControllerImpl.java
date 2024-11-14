@@ -29,7 +29,7 @@ public class OrderManageControllerImpl implements OrderManageController {
     }
 
     @Override
-    public void deliverySnatchOrder(int orderId) {
-        orderManageServer.deliverySnatchOrder(orderId);
+    public void deliverySnatchOrder(int orderId, int deliveryId) {
+        orderManageServer.deliverySnatchOrder(orderId, deliveryId);
     }
 }

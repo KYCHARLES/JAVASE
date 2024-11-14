@@ -69,7 +69,7 @@ public class OrderManageImpl implements OrderManage {
     }
 
     @Override
-    public boolean deliverySnatchOrder(int orderId) {
+    public boolean deliverySnatchOrder(int orderId, int deliveryId) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -85,9 +85,10 @@ public class OrderManageImpl implements OrderManage {
                 status = rs.getInt("orders_status");
             }
             if (status == 3){
-                String sqlUpdate = "update orders set orders_status=4 where orders_id=?";
+                String sqlUpdate = "update orders set orders_status=4,delivery_id = ? where orders_id=?";
                 ps = conn.prepareStatement(sqlUpdate);
-                ps.setInt(1, orderId);
+                ps.setInt(1, deliveryId);
+                ps.setInt(2, orderId);
                 //返回受影响的行数
                 int affectedRowNumber = ps.executeUpdate();
                 if (affectedRowNumber >= 1) {

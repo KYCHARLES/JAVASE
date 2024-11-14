@@ -30,8 +30,8 @@ public class OrderManageServerImpl implements OrderManageServer {
     }
 
     @Override
-    public synchronized boolean deliverySnatchOrder(int orderId) {
-        boolean result = orderManage.deliverySnatchOrder(orderId);
+    public synchronized boolean deliverySnatchOrder(int orderId, int deliveryId) {
+        boolean result = orderManage.deliverySnatchOrder(orderId, deliveryId);
         if (result) {
             System.out.println("抢单成功!");
         }else

@@ -23,7 +23,7 @@ public class DeliverySnatchOrders {
         Scanner scanner = new Scanner(System.in);
         int index = 0;
         while ((index = scanner.nextInt()) != -1){
-            orderManageController.deliverySnatchOrder(ordersList.get(index).getId());
+            orderManageController.deliverySnatchOrder(ordersList.get(index).getId(), delivery.getId());
             ordersList.clear();
             ordersList = getInformationController.getOrderWaitingDeliveryAccept();
             System.out.println("请输入你想接单的订单编号,输入-1退出");
