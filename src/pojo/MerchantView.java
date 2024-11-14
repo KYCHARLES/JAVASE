@@ -40,10 +40,16 @@ public class MerchantView {
 
     @Override
     public String toString() {
-        return "MerchantView{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", status=" + status +
-                '}';
+        if (getStatus() == 2) {
+            return "MerchantView{" +
+                    "name='" + name + '\'' +
+                    ", 正在营业" +
+                    '}';
+        }
+        else
+            return "MerchantView{" +
+                    "name='" + name + '\'' +
+                    ",  正在休息" +
+                    '}';
     }
 }

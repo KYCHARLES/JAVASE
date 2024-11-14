@@ -28,7 +28,7 @@ public class CustomerFunction  {
                     customerViewAddress.customerViewAddress();
                     break;
                 case 2:
-                    CustomerSearchMerchant customerSearchMerchant = new CustomerSearchMerchant();
+                    CustomerSearchMerchant customerSearchMerchant = new CustomerSearchMerchant(customer);
                     customerSearchMerchant.customerSearchMerchant();
                     break;
                 case 3:

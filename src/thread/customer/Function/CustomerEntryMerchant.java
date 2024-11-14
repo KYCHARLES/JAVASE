@@ -1,6 +1,7 @@
 package thread.customer.Function;
 
 import controller.impl.GetInformationControllerImpl;
+import pojo.Customer;
 import pojo.DishView;
 import pojo.MerchantView;
 
@@ -8,8 +9,10 @@ import java.util.*;
 
 public class CustomerEntryMerchant {
     private MerchantView merchantView;
-    public CustomerEntryMerchant(MerchantView merchantView) {
+    private Customer customer;
+    public CustomerEntryMerchant(MerchantView merchantView, Customer customer) {
         this.merchantView = merchantView;
+        this.customer = customer;
     }
 
     public void customerEntryMerchant() {
@@ -45,8 +48,13 @@ public class CustomerEntryMerchant {
             }
             if ("submit".equals(input)) {
                 getOrderedDish(orders);
-
-
+                System.out.println("如果你想提交订单,请再次输入submit进行提交,否则可以输入任意信息退出");
+                String choice = scanner.next();
+                if ("submit".equals(choice)) {
+                    CustomerConfirmOrder customerConfirmOrder =
+                            new CustomerConfirmOrder(orders.entrySet().stream().toList(), customer, merchantView);
+                    customerConfirmOrder.customerConfirmOrder();
+                }
             }
 
             System.out.println("选择功能:输入add添加菜品,输入remove删除菜品,输入check查看所有在购物车的商品,输入submit提交订单,输入esc退出");

@@ -1,6 +1,7 @@
 package thread.customer.Function;
 
 import controller.impl.GetInformationControllerImpl;
+import pojo.Customer;
 import pojo.MerchantView;
 
 import java.util.ArrayList;
@@ -10,6 +11,10 @@ import java.util.Scanner;
 
 public class CustomerSearchMerchant {
 
+    private Customer customer;
+    public CustomerSearchMerchant(Customer customer) {
+        this.customer = customer;
+    }
     List<MerchantView> merchantViewList = new ArrayList<>();
     public void  customerSearchMerchant() {
         GetInformationControllerImpl getInformationController = new GetInformationControllerImpl();
@@ -38,13 +43,14 @@ public class CustomerSearchMerchant {
                 MerchantView merchantView = merchantViewList.get(merchantChoice);
 
                 if(merchantView.getStatus() == 2) {
-                    CustomerEntryMerchant customerEntryMerchant = new CustomerEntryMerchant(merchantViewList.get(merchantChoice));
+                    CustomerEntryMerchant customerEntryMerchant = new CustomerEntryMerchant(merchantViewList.get(merchantChoice), customer);
                     customerEntryMerchant.customerEntryMerchant();
                 }else
                     System.out.println("店铺已经休息,无法进入点餐!你可以重新搜索店铺:");
             }else{
                 System.out.println("你的输入有误,无法识别你要选择的功能,系统默认你要重新搜索!请输入搜索信息");
             }
+            System.out.println("请你输入要搜索的店名(输入esc退出搜索店铺的功能):");
         }
         System.out.println("顾客搜索商家的功能退出");
     }
