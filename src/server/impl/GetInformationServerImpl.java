@@ -150,7 +150,18 @@ public class GetInformationServerImpl implements GetInformationServer {
                 System.out.println(i + " " + ordersList.get(i));
             }
         }else
-            System.out.println("搜索异常,请稍后重试");
+            System.out.println("无结果");
         return ordersList;
+    }
+
+    @Override
+    public void getAllOrderByDeliveryId(int deliveryId) {
+        List<Orders> ordersList = getInformation.getAllOrderByDeliveryId(deliveryId);
+        if (ordersList != null) {
+            for (int i = 0; i < ordersList.size(); i++) {
+                System.out.println(i + " " + ordersList.get(i));
+            }
+        }else
+            System.out.println("无结果");
     }
 }

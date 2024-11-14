@@ -21,4 +21,6 @@ public interface GetInformation {
     public List<Delivery> getDeliveryUnaudited();
     public List<Delivery> getAllDelivery();
     public List<Orders> getNewOrdersByMerchantId(int merchantId);
+
+    public List<Orders> getAllOrderByDeliveryId(int deliveryId);
 }

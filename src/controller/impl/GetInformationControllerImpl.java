@@ -81,5 +81,11 @@ public class GetInformationControllerImpl implements GetInformationController {
         return getInformationServer.getNewOrdersByMerchantId(merchantId);
     }
 
+    @Override
+    public void getAllOrderByDeliveryId(int deliveryId) {
+        System.out.println("\"--------------------所有已经完成的订单信息--------------------\"");
+        getInformationServer.getAllOrderByDeliveryId(deliveryId);
+    }
+
 
 }

@@ -22,4 +22,6 @@ public interface GetInformationServer {
     public void getAllDelivery();
 
     public List<Orders> getNewOrdersByMerchantId(int merchantId);
+
+    public void getAllOrderByDeliveryId(int deliveryId);
 }

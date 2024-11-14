@@ -1,5 +1,6 @@
 package thread.delivery.Function;
 
+import controller.impl.GetInformationControllerImpl;
 import pojo.Delivery;
 import util.Console;
 
@@ -19,6 +20,8 @@ public class DeliveryFunction {
         while ((choice = scanner.nextInt()) != 4){
             switch (choice) {
                 case 1:
+                    GetInformationControllerImpl getInformationController = new GetInformationControllerImpl();
+                    getInformationController.getAllOrderByDeliveryId(delivery.getId());
                     break;
                 case 2:
                     break;
