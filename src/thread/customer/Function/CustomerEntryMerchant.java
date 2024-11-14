@@ -53,7 +53,10 @@ public class CustomerEntryMerchant {
                 if ("submit".equals(choice)) {
                     CustomerConfirmOrder customerConfirmOrder =
                             new CustomerConfirmOrder(orders.entrySet().stream().toList(), customer, merchantView);
-                    customerConfirmOrder.customerConfirmOrder();
+                    boolean result = customerConfirmOrder.customerConfirmOrder();
+                    if (result) {
+                        orders.clear();
+                    }
                 }
             }
 

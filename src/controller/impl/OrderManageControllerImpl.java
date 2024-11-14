@@ -27,4 +27,9 @@ public class OrderManageControllerImpl implements OrderManageController {
     public void merchantUpdateOrderStatus(int orderId, int status) {
         orderManageServer.merchantUpdateOrderStatus(orderId, status);
     }
+
+    @Override
+    public void deliverySnatchOrder(int orderId) {
+        orderManageServer.deliverySnatchOrder(orderId);
+    }
 }

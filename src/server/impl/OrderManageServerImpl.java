@@ -28,4 +28,16 @@ public class OrderManageServerImpl implements OrderManageServer {
         }else
             System.out.println("系统错误,请重试");
     }
+
+    @Override
+    public synchronized boolean deliverySnatchOrder(int orderId) {
+        boolean result = orderManage.deliverySnatchOrder(orderId);
+        if (result) {
+            System.out.println("抢单成功!");
+        }else
+            System.out.println("抢单失败,订单状态可能发生改变!");
+        return result;
+    }
+
+
 }

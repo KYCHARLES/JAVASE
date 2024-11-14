@@ -26,6 +26,8 @@ public class DeliveryFunction {
                 case 2:
                     break;
                 case 3:
+                    DeliverySnatchOrders deliverySnatchOrders = new DeliverySnatchOrders(delivery);
+                    deliverySnatchOrders.deliverySnatchOrder();
                     break;
             }
             Console.console_delivery_functions();

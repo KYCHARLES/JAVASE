@@ -28,5 +28,5 @@ public interface GetInformationController {
 
     public void getAllOrderByDeliveryId(int deliveryId);
 
-
+    public List<Orders> getOrderWaitingDeliveryAccept();
 }

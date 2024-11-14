@@ -87,5 +87,11 @@ public class GetInformationControllerImpl implements GetInformationController {
         getInformationServer.getAllOrderByDeliveryId(deliveryId);
     }
 
+    @Override
+    public List<Orders> getOrderWaitingDeliveryAccept() {
+        System.out.println("\"--------------------所有正在召唤骑手的订单信息--------------------\"");
+        return getInformationServer.getOrderWaitingDeliveryAccept();
+    }
+
 
 }

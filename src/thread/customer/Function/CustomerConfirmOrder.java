@@ -23,7 +23,7 @@ public class CustomerConfirmOrder {
         this.merchantView = merchantView;
     }
 
-    public void customerConfirmOrder() {
+    public boolean customerConfirmOrder() {
         GetInformationControllerImpl getInformationController = new GetInformationControllerImpl();
         List<Address> addressList = getInformationController.getAddressByCustomerId(customer.getId());
         if (addressList.isEmpty()) {
@@ -53,6 +53,8 @@ public class CustomerConfirmOrder {
         if ((confirm = scanner.next()).equals("confirm")) {
             OrderManageControllerImpl orderManageController = new OrderManageControllerImpl();
             orderManageController.addOrder(customer, merchantView, addressList.get(choice),orderList);
+            return true;
         }
+        return false;
     }
 }

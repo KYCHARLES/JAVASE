@@ -6,6 +6,7 @@ import util.JdbcUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OrderManageImpl implements OrderManage {
@@ -65,5 +66,59 @@ public class OrderManageImpl implements OrderManage {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    @Override
+    public boolean deliverySnatchOrder(int orderId) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select orders_status from orders where orders_id=?";
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            conn.setAutoCommit(false);
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderId);
+            rs = ps.executeQuery();
+            int status = 0;
+            if (rs.next()) {
+                status = rs.getInt("orders_status");
+            }
+            if (status == 3){
+                String sqlUpdate = "update orders set orders_status=4 where orders_id=?";
+                ps = conn.prepareStatement(sqlUpdate);
+                ps.setInt(1, orderId);
+                //返回受影响的行数
+                int affectedRowNumber = ps.executeUpdate();
+                if (affectedRowNumber >= 1) {
+                    conn.commit();
+                    return true;
+                }else
+                    return false;
+            }else {
+                // 订单不是待抢单状态
+                conn.rollback();
+                return false;
+            }
+        }catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps, rs);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+
     }
 }
