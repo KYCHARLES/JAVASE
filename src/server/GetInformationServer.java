@@ -12,4 +12,6 @@ public interface GetInformationServer {
     public List<DishView> getAllDishView(String dishName);
     public List<DishView> getDishViewByMerchantId(int merchantId);
     public List<Address> getAddressByCustomerId(int CustomerId);
+
+    public List<Dish> getAllDishByMerchantId(int merchantId);
 }

@@ -15,4 +15,6 @@ public interface GetInformationController {
     public List<DishView> getDishViewByMerchantId(int merchantId);
 
     public List<Address> getAddressByCustomerId(int customerId);
+
+    public List<Dish> getDishByMerchantId(int merchantId);
 }

@@ -34,7 +34,8 @@ public class Console {
         System.out.println("2.下架菜品");
         System.out.println("3.查看所有的菜品");
         System.out.println("4.查看所有的订单信息");
-        System.out.println("5.退出");
+        System.out.println("5.查看新的订单");
+        System.out.println("6.退出");
         System.out.println("请选择你的操作:");
     }
 

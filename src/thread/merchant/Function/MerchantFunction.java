@@ -19,17 +19,21 @@ public class MerchantFunction{
         Scanner scanner = new Scanner(System.in);
         DishManageControllerImpl dishManageControllerImpl = new DishManageControllerImpl();
         int choice = 0;
-        while ((choice = scanner.nextInt()) != 5){
+        while ((choice = scanner.nextInt()) != 6){
             switch (choice) {
                 case 1:
                     System.out.println(merchant.getId());
                     dishManageControllerImpl.launchNewDishes(merchant.getId());
                     break;
                 case 2:
+                    MerchantDishManage merchantDishManage = new MerchantDishManage(merchant);
+                    merchantDishManage.merchantDishManage();
                     break;
                 case 3:
                     break;
                 case 4:
+                    break;
+                case 5:
                     break;
 
             }
