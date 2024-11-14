@@ -119,4 +119,16 @@ public class GetInformationServerImpl implements GetInformationServer {
             System.out.println("没有订单");
         return ordersList;
     }
+
+    @Override
+    public List<Delivery> getDeliveryUnaudited() {
+        List<Delivery> deliveryList = getInformation.getDeliveryUnaudited();
+        if (deliveryList != null) {
+            for (int i = 0; i < deliveryList.size(); i++) {
+                System.out.println(i + " " + deliveryList.get(i));
+            }
+        }else
+            System.out.println("搜索异常,请稍后重试");
+        return deliveryList;
+    }
 }

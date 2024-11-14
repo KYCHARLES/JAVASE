@@ -5,4 +5,5 @@ import pojo.Merchant;
 public interface AuditInformation {
     public boolean AuditMerchant(int merchantId);
     public boolean AuditDish(int dishId);
+    public boolean AuditDelivery(int deliveryId);
 }

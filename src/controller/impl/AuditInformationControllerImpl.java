@@ -4,15 +4,21 @@ import controller.AuditInformationController;
 import server.impl.AudiInformationServerImpl;
 
 public class AuditInformationControllerImpl implements AuditInformationController {
+    AudiInformationServerImpl audiInformationServer = new AudiInformationServerImpl();
     @Override
     public void AuditMerchant(int merchantId) {
-        AudiInformationServerImpl audiInformationServer = new AudiInformationServerImpl();
+
         audiInformationServer.auditMerchant(merchantId);
     }
 
     @Override
     public void AuditDish(int dishId) {
-        AudiInformationServerImpl audiInformationServer = new AudiInformationServerImpl();
+
         audiInformationServer.auditDish(dishId);
+    }
+
+    @Override
+    public void AuditDelivery(int deliveryId) {
+        audiInformationServer.auditDelivery(deliveryId);
     }
 }

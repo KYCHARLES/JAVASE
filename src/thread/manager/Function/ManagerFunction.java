@@ -1,6 +1,7 @@
 package thread.manager.Function;
 
 import controller.impl.GetInformationControllerImpl;
+import pojo.Delivery;
 import pojo.Dish;
 import pojo.Merchant;
 import util.Console;
@@ -24,12 +25,14 @@ public class ManagerFunction {
                 case 2:
                     break;
                 case 3:
-
                     List<Merchant> merchantList = getInformationController.getMerchantUnaudited();
                     ManagerAuditMerchant managerAuditMerchant = new ManagerAuditMerchant(merchantList);
                     managerAuditMerchant.managerAuditMerchant();
                     break;
                 case 4:
+                    List<Delivery> deliveryList = getInformationController.getDeliveryUnaudited();
+                    ManagerAuditDelivery managerAuditDelivery = new ManagerAuditDelivery(deliveryList);
+                    managerAuditDelivery.managerAuditDelivery();
                     break;
                 case 5:
                     List<Dish> dishList = getInformationController.getDishUnaudited();

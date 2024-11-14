@@ -19,4 +19,6 @@ public interface GetInformationController {
     public List<Dish> getDishByMerchantId(int merchantId);
 
     public List<Orders> getAllOrdersByMerchantId(int merchantId);
+
+    public List<Delivery> getDeliveryUnaudited();
 }

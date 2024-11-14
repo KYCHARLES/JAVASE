@@ -63,5 +63,11 @@ public class GetInformationControllerImpl implements GetInformationController {
         return getInformationServer.getAllOrdersByMerchantId(merchantId);
     }
 
+    @Override
+    public List<Delivery> getDeliveryUnaudited() {
+        System.out.println("\"--------------------所有未审核的骑手信息--------------------\"");
+        return getInformationServer.getDeliveryUnaudited();
+    }
+
 
 }

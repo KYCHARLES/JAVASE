@@ -60,4 +60,30 @@ public class AuditInformationImpl implements AuditInformation {
             }
         }
     }
+
+    @Override
+    public boolean AuditDelivery(int deliveryId) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        String sql = "update delivery set delivery_status = 3, update_date = sysdate where delivery_id=?";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, deliveryId);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
 }
