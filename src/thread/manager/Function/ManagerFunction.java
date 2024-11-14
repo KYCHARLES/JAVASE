@@ -23,6 +23,7 @@ public class ManagerFunction {
                     getInformationController.getAllMerchant();
                     break;
                 case 2:
+                    getInformationController.getAllDelivery();
                     break;
                 case 3:
                     List<Merchant> merchantList = getInformationController.getMerchantUnaudited();

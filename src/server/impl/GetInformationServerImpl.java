@@ -12,7 +12,6 @@ public class GetInformationServerImpl implements GetInformationServer {
     @Override
     public void getAllMerchant() {
 
-
         List<Merchant> merchantList = getInformation.getAllMerchant();
         if (merchantList != null) {
             for (Merchant merchant : merchantList) {
@@ -130,5 +129,16 @@ public class GetInformationServerImpl implements GetInformationServer {
         }else
             System.out.println("搜索异常,请稍后重试");
         return deliveryList;
+    }
+
+    @Override
+    public void getAllDelivery() {
+        List<Delivery> deliveryList = getInformation.getAllDelivery();
+        if (deliveryList != null) {
+            for(Delivery delivery : deliveryList){
+                System.out.println(delivery);
+            }
+        }else
+            System.out.println("没有相关信息");
     }
 }

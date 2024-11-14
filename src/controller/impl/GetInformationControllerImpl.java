@@ -69,5 +69,11 @@ public class GetInformationControllerImpl implements GetInformationController {
         return getInformationServer.getDeliveryUnaudited();
     }
 
+    @Override
+    public void getAllDelivery() {
+        System.out.println("\"--------------------所有的骑手信息--------------------\"");
+        getInformationServer.getAllDelivery();
+    }
+
 
 }

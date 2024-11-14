@@ -370,4 +370,42 @@ public class GetInformationImpl implements GetInformation {
             }
         }
     }
+
+    @Override
+    public List<Delivery> getAllDelivery() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select * from delivery";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            List<Delivery> deliveryList = new ArrayList<>();
+            while (rs.next()) {
+                deliveryList.add(new Delivery(rs.getInt("delivery_id"),
+                        rs.getString("delivery_name"),
+                        rs.getString("delivery_username"),
+                        rs.getString("delivery_password"),
+                        rs.getInt("delivery_status"),
+                        rs.getInt("delivery_unfinishedorder"),
+                        rs.getInt("delivery_completedorder"),
+                        rs.getInt("delivery_cancelledorder"),
+                        rs.getInt("delivery_score"),
+                        rs.getDate("create_date").toLocalDate(),
+                        rs.getDate("update_date").toLocalDate()));
+            }
+            return deliveryList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps, rs);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }

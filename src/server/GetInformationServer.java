@@ -18,4 +18,6 @@ public interface GetInformationServer {
     public List<Orders> getAllOrdersByMerchantId(int merchantId);
 
     public List<Delivery> getDeliveryUnaudited();
+
+    public void getAllDelivery();
 }
