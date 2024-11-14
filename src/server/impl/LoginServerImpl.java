@@ -2,6 +2,7 @@ package server.impl;
 
 import dao.impl.LoginImpl;
 import pojo.Customer;
+import pojo.Delivery;
 import pojo.Merchant;
 import server.LoginServer;
 
@@ -54,6 +55,29 @@ public class LoginServerImpl implements LoginServer {
             System.out.println("登录成功!");
         else
             System.out.println("登录失败,请检查你的用户信息");
+        return loginResult;
+    }
+
+    @Override
+    public Delivery loginDelivery(String username, String password) {
+        LoginImpl loginImpl = new LoginImpl();
+        List<Delivery> deliveryList = loginImpl.loginDelivery(username, password);
+        Delivery loginResult = null;
+        if (!deliveryList.isEmpty()) {
+            loginResult = deliveryList.getFirst();
+            switch (loginResult.getStatus()){
+                case 0:
+                    System.out.println("登录失败,你的账号已经被封禁!");
+                    break;
+                case 1:
+                    System.out.println("你的账号等待管理员审核中,请耐心等候");
+                    break;
+                case 2:
+                    System.out.println("登录成功");
+                    break;
+            }
+        }else
+            System.out.println("登录失败,请检查你的用户信息!");
         return loginResult;
     }
 }

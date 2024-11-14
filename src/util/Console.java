@@ -65,6 +65,7 @@ public class Console {
         System.out.println("3.搜索菜品");
         System.out.println("4.查看所有的订单信息");
         System.out.println("5.退出");
+        System.out.println("请选择你的操作:");
     }
 
     public static void console_delivery(){
@@ -72,5 +73,15 @@ public class Console {
         System.out.println("1.骑手登录");
         System.out.println("2.骑手注册");
         System.out.println("3.退出");
+        System.out.println("请选择你的操作:");
+    }
+
+    public static void console_delivery_functions(){
+        System.out.println("--------------------欢迎来到仿美团外卖系统--------------------");
+        System.out.println("1.查看所有的订单");
+        System.out.println("2.查看正在进行的订单");
+        System.out.println("3.查看正在召唤骑手的订单");
+        System.out.println("4.退出");
+        System.out.println("请选择你的操作:");
     }
 }
