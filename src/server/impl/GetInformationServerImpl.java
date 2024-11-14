@@ -107,4 +107,16 @@ public class GetInformationServerImpl implements GetInformationServer {
             System.out.println("展示没有菜品!");
         return dishList;
     }
+
+    @Override
+    public List<Orders> getAllOrdersByMerchantId(int merchantId) {
+        List<Orders> ordersList = getInformation.getAllOrdersByMerchantId(merchantId);
+        if (ordersList != null) {
+            for (int i = 0; i < ordersList.size(); i++) {
+                System.out.println(i + " " + ordersList.get(i));
+            }
+        }else
+            System.out.println("没有订单");
+        return ordersList;
+    }
 }

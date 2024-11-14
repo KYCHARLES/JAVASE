@@ -1,6 +1,7 @@
 package thread.merchant.Function;
 
 import controller.impl.DishManageControllerImpl;
+import controller.impl.GetInformationControllerImpl;
 import dao.impl.MerchantStatusImpl;
 import pojo.Merchant;
 import util.Console;
@@ -22,7 +23,6 @@ public class MerchantFunction{
         while ((choice = scanner.nextInt()) != 6){
             switch (choice) {
                 case 1:
-                    System.out.println(merchant.getId());
                     dishManageControllerImpl.launchNewDishes(merchant.getId());
                     break;
                 case 2:
@@ -30,8 +30,11 @@ public class MerchantFunction{
                     merchantDishManage.merchantDishManage();
                     break;
                 case 3:
+
                     break;
                 case 4:
+                    GetInformationControllerImpl getInformationControllerImpl = new GetInformationControllerImpl();
+                    getInformationControllerImpl.getAllOrdersByMerchantId(merchant.getId());
                     break;
                 case 5:
                     break;

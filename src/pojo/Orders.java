@@ -122,18 +122,23 @@ public class Orders {
 
     @Override
     public String toString() {
-        return "Orders{" +
-                "id=" + id +
-                ", customerId=" + customerId +
-                ", deliveryId=" + deliveryId +
-                ", merchantId=" + merchantId +
-                ", dishDescription='" + dishDescription + '\'' +
-                ", address='" + address + '\'' +
-                ", status=" + status +
-                ", customerPaid=" + customerPaid +
-                ", deliveryFee=" + deliveryFee +
-                ", createDate=" + createDate +
-                ", updateDate=" + updateDate +
-                '}';
+           if(getStatus() == 0)
+               return "Orders [" + getDishDescription() + " " + getAddress() + " " + getCustomerPaid() + " " + getUpdateDate() + "用户已经取消订单";
+           else if (getStatus() == 1)
+               return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 用户已经下单,等待确认";
+           else if (getStatus() == 2)
+               return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 商界已经接单";
+           else if (getStatus() == 3)
+               return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 商界出餐,召唤骑手";
+           else if (getStatus() == 4)
+               return  "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 骑手已经接单,正在为你配送!";
+           else if (getStatus() == 5)
+               return  "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 订单已经完成!";
+           else
+               return null;
+    }
+
+    public String toString(Merchant merchant){
+        return null;
     }
 }

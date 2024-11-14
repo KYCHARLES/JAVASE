@@ -16,7 +16,7 @@ public class OrderManageControllerImpl implements OrderManageController {
         String dishDescription = "";
         int totalPrice = 0;
         for (Map.Entry<DishView, Integer> entry : order) {
-            dishDescription = dishDescription + entry.getKey().getDishName() + "*" + entry.getValue() + "\n";
+            dishDescription = dishDescription + entry.getKey().getDishName() + "*" + entry.getValue() + " ";
             totalPrice = totalPrice + entry.getKey().getDishPrice() * entry.getValue();
         }
         orderManageServer.addOrder(customerId, merchantId, dishDescription, address.toString(), totalPrice);
