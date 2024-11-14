@@ -22,7 +22,7 @@ public class ManagerAuditDish  {
         GetInformationControllerImpl getInformationController = new GetInformationControllerImpl();
         int dishChoice = 0;
         while ((dishChoice = sc.nextInt()) != -1) {
-            auditInformationController.AuditDish(dishes.get(dishChoice).getId());
+            auditInformationController.auditDish(dishes.get(dishChoice).getId());
 
             dishes.clear();
             dishes = getInformationController.getDishUnaudited();

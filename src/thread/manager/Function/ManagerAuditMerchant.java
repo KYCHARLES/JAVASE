@@ -22,7 +22,7 @@ public class ManagerAuditMerchant{
         GetInformationControllerImpl getInformationController = new GetInformationControllerImpl();
         int merchantChoice = 0;
         while ((merchantChoice = sc.nextInt()) != -1) {
-            auditInformationController.AuditMerchant(merchantList.get(merchantChoice).getId());
+            auditInformationController.auditMerchant(merchantList.get(merchantChoice).getId());
 
             merchantList.clear();
             merchantList = getInformationController.getMerchantUnaudited();

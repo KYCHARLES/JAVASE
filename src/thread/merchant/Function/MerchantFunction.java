@@ -2,6 +2,7 @@ package thread.merchant.Function;
 
 import controller.impl.DishManageControllerImpl;
 import controller.impl.GetInformationControllerImpl;
+import controller.impl.MerchantStatusControllerImpl;
 import dao.impl.MerchantStatusImpl;
 import pojo.Merchant;
 import util.Console;
@@ -44,8 +45,8 @@ public class MerchantFunction{
             }
             Console.console_merchant_functions();
         }
-        MerchantStatusImpl merchantStatusImpl = new MerchantStatusImpl();
-        merchantStatusImpl.MerchantRest(merchant.getId());
+        MerchantStatusControllerImpl merchantStatusControllerImpl = new MerchantStatusControllerImpl();
+        merchantStatusControllerImpl.merchantRest(merchant.getId());
         System.out.println("退出商家功能页面!");
     }
 }

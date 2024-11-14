@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class MerchantStatusImpl implements MerchantStatus {
     @Override
-    public void MerchantBusiness(int MerchantId) {
+    public void merchantBusiness(int MerchantId) {
         Connection conn = null;
         PreparedStatement ps = null;
 
@@ -34,7 +34,7 @@ public class MerchantStatusImpl implements MerchantStatus {
     }
 
     @Override
-    public void MerchantRest(int MerchantId) {
+    public void merchantRest(int MerchantId) {
         Connection conn = null;
         PreparedStatement ps = null;
 

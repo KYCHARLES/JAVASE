@@ -1,6 +1,6 @@
 package dao;
 
 public interface MerchantStatus {
-    public void MerchantBusiness(int MerchantId);
-    public void MerchantRest(int MerchantId);
+    public void merchantBusiness(int MerchantId);
+    public void merchantRest(int MerchantId);
 }

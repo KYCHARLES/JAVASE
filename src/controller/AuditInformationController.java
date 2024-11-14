@@ -1,7 +1,7 @@
 package controller;
 
 public interface AuditInformationController {
-    public void AuditMerchant(int merchantId);
-    public void AuditDish(int dishId);
-    public void AuditDelivery(int deliveryId);
+    public void auditMerchant(int merchantId);
+    public void auditDish(int dishId);
+    public void auditDelivery(int deliveryId);
 }

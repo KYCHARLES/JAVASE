@@ -22,7 +22,7 @@ public class ManagerAuditDelivery {
         int index = 0;
         while ((index = scanner.nextInt()) != -1){
 
-            auditInformationController.AuditDelivery(deliveryList.get(index).getId());
+            auditInformationController.auditDelivery(deliveryList.get(index).getId());
             deliveryList.clear();
             deliveryList = getInformationController.getDeliveryUnaudited();
             System.out.println("请输入确认通过审核的骑手的索引信息(输入-1退出)");
