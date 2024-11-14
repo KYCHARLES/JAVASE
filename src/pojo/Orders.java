@@ -123,13 +123,13 @@ public class Orders {
     @Override
     public String toString() {
            if(getStatus() == 0)
-               return "Orders [" + getDishDescription() + " " + getAddress() + " " + getCustomerPaid() + " " + getUpdateDate() + "用户已经取消订单";
+               return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 用户已经取消订单";
            else if (getStatus() == 1)
                return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 用户已经下单,等待确认";
            else if (getStatus() == 2)
-               return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 商界已经接单";
+               return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 商家已经接单";
            else if (getStatus() == 3)
-               return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 商界出餐,召唤骑手";
+               return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 商家出餐,正在召唤骑手";
            else if (getStatus() == 4)
                return  "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() +  " " + getUpdateDate() + " 骑手已经接单,正在为你配送!";
            else if (getStatus() == 5)
@@ -138,7 +138,26 @@ public class Orders {
                return null;
     }
 
-    public String toString(Merchant merchant){
-        return null;
+    public String toString(Delivery delivery, Merchant merchant){
+        if(getStatus() == 0)
+            return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() + "\n " +
+                    " 商家信息:" + merchant.getName() +" " + merchant.getUsername() + " 骑手信息:" + getUpdateDate() + " " + delivery.getUsername() + " 用户已经取消订单";
+        else if (getStatus() == 1)
+            return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() + "\n " +
+                    " 商家信息:" + merchant.getName() +" " + merchant.getUsername() + " 骑手信息:" + getUpdateDate() + " " + delivery.getUsername() + " 用户已经下单,等待确认";
+        else if (getStatus() == 2)
+            return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() + "\n " +
+                    " 商家信息:" + merchant.getName() +" " + merchant.getUsername() + " 骑手信息:" + getUpdateDate() + " " + delivery.getUsername() + " 商家已经接单";
+        else if (getStatus() == 3)
+            return "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() + "\n " +
+                    " 商家信息:" + merchant.getName() +" " + merchant.getUsername() + " 骑手信息:" + getUpdateDate() + " " + delivery.getUsername() + " 商家出餐,正在召唤骑手";
+        else if (getStatus() == 4)
+            return  "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() + "\n " +
+                    " 商家信息:" + merchant.getName() +" " + merchant.getUsername() + " 骑手信息:" + getUpdateDate() + " " + delivery.getUsername() + " 骑手已经接单,正在为你配送!";
+        else if (getStatus() == 5)
+            return  "Orders [" + getDishDescription() + " " + getAddress() + " 用户付款:" + getCustomerPaid() + " 配送费:" + getDeliveryFee() + "\n " +
+                    " 商家信息:" + merchant.getName() +" " + merchant.getUsername() + " 骑手信息:" + getUpdateDate() + " " + delivery.getUsername() + " 订单已经完成!";
+        else
+            return null;
     }
 }

@@ -37,6 +37,8 @@ public class MerchantFunction{
                     getInformationControllerImpl.getAllOrdersByMerchantId(merchant.getId());
                     break;
                 case 5:
+                    MerchantOrdersManage merchantOrdersManage = new MerchantOrdersManage(merchant);
+                    merchantOrdersManage.merchantOrdersManage();
                     break;
 
             }

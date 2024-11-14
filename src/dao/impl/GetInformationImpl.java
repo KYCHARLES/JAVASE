@@ -408,4 +408,44 @@ public class GetInformationImpl implements GetInformation {
             }
         }
     }
+
+    @Override
+    public List<Orders> getNewOrdersByMerchantId(int merchantId) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select * from orders where merchant_id = ? and orders_status < 5 and orders_status > 0 order by update_date desc";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, merchantId);
+            rs = ps.executeQuery();
+            List<Orders> ordersList = new ArrayList<>();
+            while (rs.next()) {
+                ordersList.add(new Orders(rs.getInt("orders_id"),
+                        rs.getInt("customer_id"),
+                        rs.getInt("delivery_id"),
+                        rs.getInt("merchant_id"),
+                        rs.getString("dish_description"),
+                        rs.getString("address_information"),
+                        rs.getInt("orders_status"),
+                        rs.getInt("orders_costomerPaid"),
+                        rs.getInt("orders_deliveryFee"),
+                        rs.getDate("create_date").toLocalDate(),
+                        rs.getDate("update_date").toLocalDate()));
+            }
+            return ordersList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps, rs);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }

@@ -44,7 +44,7 @@ public class AddressManageImpl implements AddressManage {
         Connection conn = null;
         PreparedStatement ps = null;
 
-        String sql = "update address set address_recipient = ?, address_phoneNumber = ?, address_location = ? where address_id = ?";
+        String sql = "update address set address_recipient = ?, address_phoneNumber = ?, address_location = ?, update_date = sysdate where address_id = ?";
 
         try {
             conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
@@ -72,7 +72,7 @@ public class AddressManageImpl implements AddressManage {
         Connection conn = null;
         PreparedStatement ps = null;
 
-        String sql = "update address set  address_status = ? where address_id = ?";
+        String sql = "update address set  address_status = ?, update_date = sysdate where address_id = ?";
 
         try {
             conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);

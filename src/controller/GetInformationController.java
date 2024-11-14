@@ -18,9 +18,11 @@ public interface GetInformationController {
 
     public List<Dish> getDishByMerchantId(int merchantId);
 
-    public List<Orders> getAllOrdersByMerchantId(int merchantId);
+    public void getAllOrdersByMerchantId(int merchantId);
 
     public List<Delivery> getDeliveryUnaudited();
 
     public void getAllDelivery();
+
+    public List<Orders> getNewOrdersByMerchantId(int merchantId);
 }

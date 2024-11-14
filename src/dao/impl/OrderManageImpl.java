@@ -40,4 +40,30 @@ public class OrderManageImpl implements OrderManage {
             }
         }
     }
+
+    @Override
+    public boolean merchantUpdateOrderStatus(int OrderId, int OrderStatus) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        String sql = "update orders set orders_status=?, update_date = sysdate where orders_id=?";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, OrderStatus);
+            ps.setInt(2, OrderId);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }

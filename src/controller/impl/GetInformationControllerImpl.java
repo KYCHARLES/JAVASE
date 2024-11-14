@@ -58,9 +58,9 @@ public class GetInformationControllerImpl implements GetInformationController {
     }
 
     @Override
-    public List<Orders> getAllOrdersByMerchantId(int merchantId) {
+    public void getAllOrdersByMerchantId(int merchantId) {
         System.out.println("\"--------------------所有的订单信息--------------------\"");
-        return getInformationServer.getAllOrdersByMerchantId(merchantId);
+        getInformationServer.getAllOrdersByMerchantId(merchantId);
     }
 
     @Override
@@ -73,6 +73,12 @@ public class GetInformationControllerImpl implements GetInformationController {
     public void getAllDelivery() {
         System.out.println("\"--------------------所有的骑手信息--------------------\"");
         getInformationServer.getAllDelivery();
+    }
+
+    @Override
+    public List<Orders> getNewOrdersByMerchantId(int merchantId) {
+        System.out.println("\"--------------------所有的正在进行的订单信息--------------------\"");
+        return getInformationServer.getNewOrdersByMerchantId(merchantId);
     }
 
 
