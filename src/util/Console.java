@@ -66,4 +66,11 @@ public class Console {
         System.out.println("4.查看所有的订单信息");
         System.out.println("5.退出");
     }
+
+    public static void console_delivery(){
+        System.out.println("--------------------欢迎来到仿美团外卖系统--------------------");
+        System.out.println("1.骑手登录");
+        System.out.println("2.骑手注册");
+        System.out.println("3.退出");
+    }
 }

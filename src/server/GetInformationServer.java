@@ -16,4 +16,5 @@ public interface GetInformationServer {
     public List<Dish> getAllDishByMerchantId(int merchantId);
 
     public List<Orders> getAllOrdersByMerchantId(int merchantId);
+
 }

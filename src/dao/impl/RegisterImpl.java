@@ -72,4 +72,33 @@ public class RegisterImpl implements Register {
             }
         }
     }
+
+    @Override
+    public boolean registerDelivery(String name, String username, String password) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        String sql = "insert into delivery(delivery_id, delivery_name, delivery_username, delivery_password, delivery_status,delivery_unfinishedorder,delivery_completedorder,delivery_cancelledorder,delivery_score,create_date,update_date)" +
+                " values(delivery_seq.nextval, ?,?,?,1,0,0,0,0,sysdate,sysdate)";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, username);
+            ps.setString(3, password);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
 }

@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class MerchantFunction{
     private Merchant merchant;
+    GetInformationControllerImpl getInformationControllerImpl = new GetInformationControllerImpl();
     public MerchantFunction(Merchant merchant) {
         this.merchant = merchant;
     }
@@ -30,10 +31,9 @@ public class MerchantFunction{
                     merchantDishManage.merchantDishManage();
                     break;
                 case 3:
-
+                    getInformationControllerImpl.getDishViewByMerchantId(merchant.getId());
                     break;
                 case 4:
-                    GetInformationControllerImpl getInformationControllerImpl = new GetInformationControllerImpl();
                     getInformationControllerImpl.getAllOrdersByMerchantId(merchant.getId());
                     break;
                 case 5:

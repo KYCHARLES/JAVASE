@@ -23,4 +23,14 @@ public class RegisterServerImpl implements RegisterServer {
         }else
             System.out.println("注册失败!");
     }
+
+    @Override
+    public void registerDelivery(String name, String username, String password) {
+        RegisterImpl registerImpl = new RegisterImpl();
+        boolean registerResult = registerImpl.registerDelivery(name, username, password);
+        if (registerResult) {
+            System.out.println("注册成功!正在等待管理员审核您的信息!");
+        }else
+            System.out.println("注册失败!");
+    }
 }
