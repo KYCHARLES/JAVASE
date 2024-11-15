@@ -26,7 +26,7 @@ public class MerchantOrdersManage {
         while ((index = scanner.nextInt()) != -1){
             System.out.println("--------------------"+ index +"号订单--------------------");
             System.out.println(ordersList.get(index));
-            System.out.println("请输入你的操作,2表示接受订单,3表示出餐,召唤骑手,任意输入表示重新选择订单进行操作:");
+            System.out.println("请输入你的操作,2表示接受订单,3表示出餐,召唤骑手,其他任意输入表示重新选择订单进行操作:");
             int choice = scanner.nextInt();
             if (choice == 2 ){
                 if (ordersList.get(index).getStatus() < 2 && ordersList.get(index).getStatus() != 0){
@@ -42,7 +42,7 @@ public class MerchantOrdersManage {
             }
             ordersList.clear();
             ordersList = getInformationController.getNewOrdersByMerchantId(merchant.getId());
-            System.out.println("请输入你的操作,2表示接受订单,3表示出餐,召唤骑手,任意输入表示重新选择订单进行操作:");
+            System.out.println("请输入你的操作,2表示接受订单,3表示出餐,召唤骑手,其他任意输入表示重新选择订单进行操作:");
         }
     }
 }

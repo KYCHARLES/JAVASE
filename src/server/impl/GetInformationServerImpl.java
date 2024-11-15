@@ -176,4 +176,16 @@ public class GetInformationServerImpl implements GetInformationServer {
             System.out.println("没有查询结果,请重试!");
         return ordersList;
     }
+
+    @Override
+    public void getAllOrdersViewByCustomerId(int customerId) {
+        List<OrdersView> ordersViews = getInformation.getAllOrdersViewByCustomerId(customerId);
+        if (ordersViews != null) {
+            for (int i = 0; i < ordersViews.size(); i++) {
+                System.out.println(i + " " + ordersViews.get(i));
+                System.out.println();
+            }
+        }else
+            System.out.println("没有查询结果,请重试!");
+    }
 }

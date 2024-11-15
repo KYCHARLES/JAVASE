@@ -1,5 +1,6 @@
 package thread.customer.Function;
 
+import controller.GetInformationController;
 import controller.impl.GetInformationControllerImpl;
 import pojo.Address;
 import pojo.Customer;
@@ -36,6 +37,9 @@ public class CustomerFunction  {
                     customerSearchDish.customerSearchDish();
                     break;
                 case 4:
+                    GetInformationController getInformationController = new GetInformationControllerImpl();
+                    getInformationController.getAllOrdersViewByCustomerId(customer.getId());
+
                     break;
             }
 

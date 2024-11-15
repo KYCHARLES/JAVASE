@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static oracle.net.aso.C00.p;
+import static oracle.net.aso.C00.r;
 
 public class GetInformationImpl implements GetInformation {
     @Override
@@ -525,6 +526,44 @@ public class GetInformationImpl implements GetInformation {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    @Override
+    public List<OrdersView> getAllOrdersViewByCustomerId(int customerId) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select * from orders_view where customer_id = ? order by UPDATE_DATE desc ";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, customerId);
+            rs = ps.executeQuery();
+            List<OrdersView> ordersViewsList = new ArrayList<>();
+
+            while (rs.next()) {
+                ordersViewsList.add(new OrdersView( rs.getInt("orders_id"),
+                                                    rs.getInt("customer_id"),
+                                                    rs.getInt("delivery_id"),
+                                                    rs.getString("delivery_name"),
+                                                    rs.getString("delivery_username"),
+                                                    rs.getInt("merchant_id"),
+                                                    rs.getString("merchant_name"),
+                                                    rs.getString("merchant_username"),
+                                                    rs.getString("dish_description"),
+                                                    rs.getString("address_information"),
+                                                    rs.getInt("orders_costomerpaid"),
+                                                    rs.getInt("orders_deliveryfee"),
+                                                    rs.getInt("orders_status"),
+                                                    rs.getDate("update_date").toLocalDate()));
+            }
+            return ordersViewsList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

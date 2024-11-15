@@ -25,4 +25,6 @@ public interface GetInformation {
     public List<Orders> getAllOrderByDeliveryId(int deliveryId);
 
     public List<Orders> getOrderWaitingDeliveryAccept();
+
+    public List<OrdersView> getAllOrdersViewByCustomerId(int customerId);
 }

@@ -11,7 +11,9 @@ public interface GetInformationController {
     public List<MerchantView> getAllMerchantView(String merchantName);
 
     public List<Dish> getDishUnaudited();
+
     public List<DishView> getAllDishView(String dishName);
+
     public List<DishView> getDishViewByMerchantId(int merchantId);
 
     public List<Address> getAddressByCustomerId(int customerId);
@@ -29,4 +31,6 @@ public interface GetInformationController {
     public void getAllOrderByDeliveryId(int deliveryId);
 
     public List<Orders> getOrderWaitingDeliveryAccept();
+
+    public void getAllOrdersViewByCustomerId(int customerId);
 }
