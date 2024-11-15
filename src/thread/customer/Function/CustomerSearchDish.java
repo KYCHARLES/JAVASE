@@ -1,7 +1,10 @@
 package thread.customer.Function;
 
 import controller.impl.GetInformationControllerImpl;
+import pojo.Customer;
 import pojo.DishView;
+import pojo.Merchant;
+import pojo.MerchantView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +14,10 @@ import java.util.Scanner;
 public class CustomerSearchDish {
 
     List<DishView> dishViewList = new ArrayList<>();
+    private Customer customer;
+    public CustomerSearchDish(Customer customer) {
+        this.customer = customer;
+    }
 
     public void customerSearchDish() {
         GetInformationControllerImpl getInformationController = new GetInformationControllerImpl();
@@ -33,10 +40,14 @@ public class CustomerSearchDish {
             else if (Objects.equals(choice, "en")) {
                 System.out.println("请输入你要进入的店铺的索引:");
                 int merchantIndex = scanner.nextInt();
+                MerchantView merchantView = getInformationController.getMerchantViewById(dishViewList.get(merchantIndex).getMerchantId());
+                CustomerEntryMerchant customerEntryMerchant = new CustomerEntryMerchant(merchantView, customer);
+                customerEntryMerchant.customerEntryMerchant();
 
             }else{
                 System.out.println("你的输入有误,无法识别你要选择的功能,系统默认你要重新搜索!");
             }
+            System.out.println("请你输入要搜索的菜(输入esc退出该功能):");
         }
         System.out.println("顾客搜索菜品的功能退出");
     }

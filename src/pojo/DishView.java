@@ -7,19 +7,20 @@ public class DishView {
     private String dishDescription;
     private int dishPrice;
     private String merchantName;
+    private int merchantStatus;
 
     public DishView() {
     }
 
-    public DishView(int dishId, int merchantId, String dishName, String dishDescription, int dishPrice, String merchantName) {
+    public DishView(int dishId, int merchantId, String dishName, String dishDescription, int dishPrice, String merchantName, int merchantStatus) {
         this.dishId = dishId;
         this.merchantId = merchantId;
         this.dishName = dishName;
         this.dishDescription = dishDescription;
         this.dishPrice = dishPrice;
         this.merchantName = merchantName;
+        this.merchantStatus = merchantStatus;
     }
-
     public int getDishId() {
         return dishId;
     }
@@ -68,13 +69,19 @@ public class DishView {
         this.merchantName = merchantName;
     }
 
+    public int getMerchantStatus() {
+        return merchantStatus;
+    }
+
+    public void setMerchantStatus(int merchantStatus) {
+        this.merchantStatus = merchantStatus;
+    }
+
     @Override
     public String toString() {
-        return "DishView{" +
-                "dishName='" + dishName + '\'' +
-                ", dishDescription='" + dishDescription + '\'' +
-                ", dishPrice=" + dishPrice +
-                ", merchantName='" + merchantName + '\'' +
-                '}';
+        if (getMerchantStatus() == 2)
+            return "dishName='" + dishName + '\'' + ", dishDescription='" + dishDescription + '\'' + ", dishPrice=" + dishPrice + ", merchantName='" + merchantName + '\'' + "店铺正在营业";
+        else
+            return "dishName='" + dishName + '\'' + ", dishDescription='" + dishDescription + '\'' + ", dishPrice=" + dishPrice + ", merchantName='" + merchantName + '\'' + "店铺已经休息";
     }
 }

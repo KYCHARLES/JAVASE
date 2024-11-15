@@ -24,6 +24,8 @@ public class DeliveryFunction {
                     getInformationController.getAllOrderByDeliveryId(delivery.getId());
                     break;
                 case 2:
+                    DeliveryOrdersManage deliveryOrdersManage = new DeliveryOrdersManage(delivery);
+                    deliveryOrdersManage.deliveryOrdersManage();
                     break;
                 case 3:
                     DeliverySnatchOrders deliverySnatchOrders = new DeliverySnatchOrders(delivery);

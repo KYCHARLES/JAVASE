@@ -33,7 +33,7 @@ public class CustomerFunction  {
                     customerSearchMerchant.customerSearchMerchant();
                     break;
                 case 3:
-                    CustomerSearchDish customerSearchDish = new CustomerSearchDish();
+                    CustomerSearchDish customerSearchDish = new CustomerSearchDish(customer);
                     customerSearchDish.customerSearchDish();
                     break;
                 case 4:

@@ -10,7 +10,6 @@ import java.sql.SQLException;
 
 public class RegisterImpl implements Register {
 
-
     public boolean registerCustomer(String name, String username, String password)  {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -39,7 +38,6 @@ public class RegisterImpl implements Register {
         }
 
     }
-
 
     @Override
     public boolean registerMerchant(String name, String username, String password) {

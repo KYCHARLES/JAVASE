@@ -99,5 +99,16 @@ public class GetInformationControllerImpl implements GetInformationController {
         getInformationServer.getAllOrdersViewByCustomerId(customerId);
     }
 
+    @Override
+    public MerchantView getMerchantViewById(int merchantId) {
+        return getInformationServer.getMerchantViewById(merchantId);
+    }
+
+    @Override
+    public List<OrdersView> getNewOrdersViewByDeliveryId(int DeliveryId) {
+        System.out.println("\"--------------------所有的正在进行的订单信息--------------------\"");
+        return getInformationServer.getNewOrdersViewByDeliveryId(DeliveryId);
+    }
+
 
 }

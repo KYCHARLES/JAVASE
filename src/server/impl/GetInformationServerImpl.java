@@ -188,4 +188,24 @@ public class GetInformationServerImpl implements GetInformationServer {
         }else
             System.out.println("没有查询结果,请重试!");
     }
+
+    @Override
+    public MerchantView getMerchantViewById(int merchantId) {
+        List<MerchantView> merchantViewList = getInformation.getMerchantViewById(merchantId);
+        if (merchantViewList != null) return merchantViewList.getFirst();
+        else
+            return null;
+    }
+
+    @Override
+    public List<OrdersView> getNewOrdersViewByDeliveryId(int DeliveryId) {
+        List<OrdersView> ordersViewList = getInformation.getNewOrdersViewByDeliveryId(DeliveryId);
+        if (ordersViewList != null) {
+            for (int i = 0; i < ordersViewList.size(); i++) {
+                System.out.println(i + " " + ordersViewList.get(i));
+            }
+        }else
+            System.out.println("没有正在进行的订单!");
+        return ordersViewList;
+    }
 }

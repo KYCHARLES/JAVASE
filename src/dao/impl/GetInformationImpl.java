@@ -185,7 +185,8 @@ public class GetInformationImpl implements GetInformation {
                                                 rs.getString("dish_name"),
                                                 rs.getString("dish_description"),
                                                 rs.getInt("dish_price"),
-                                                rs.getString("merchant_name")));
+                                                rs.getString("merchant_name"),
+                                                rs.getInt("merchant_status")));
             }
             return dishViewList;
         } catch (SQLException e) {
@@ -219,7 +220,8 @@ public class GetInformationImpl implements GetInformation {
                         rs.getString("dish_name"),
                         rs.getString("dish_description"),
                         rs.getInt("dish_price"),
-                        rs.getString("merchant_name")));
+                        rs.getString("merchant_name"),
+                        rs.getInt("merchant_status")));
             }
             return dishViewList;
         } catch (SQLException e) {
@@ -564,6 +566,88 @@ public class GetInformationImpl implements GetInformation {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps, rs);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
+
+    @Override
+    public List<MerchantView> getMerchantViewById(int merchantId) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select * from merchant where merchant_id = ?";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url, JdbcConfig.username, JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, merchantId);
+            rs = ps.executeQuery();
+            List<MerchantView> merchantViewList = new ArrayList<>();
+            while (rs.next()) {
+                merchantViewList.add(new MerchantView(rs.getInt("merchant_id"),
+                        rs.getString("merchant_name"),
+                        rs.getInt("merchant_status")));
+            }
+            return merchantViewList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps, rs);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @Override
+    public List<OrdersView> getNewOrdersViewByDeliveryId(int DeliveryId) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select * from orders_view where delivery_id = ? and orders_status = 4 order by UPDATE_DATE desc ";
+
+        try {
+            conn = JdbcUtil.getConnection(JdbcConfig.url,JdbcConfig.username,JdbcConfig.password);
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, DeliveryId);
+            rs = ps.executeQuery();
+            List<OrdersView> ordersViewList = new ArrayList<>();
+            while (rs.next()) {
+                ordersViewList.add(new OrdersView( rs.getInt("orders_id"),
+                        rs.getInt("customer_id"),
+                        rs.getInt("delivery_id"),
+                        rs.getString("delivery_name"),
+                        rs.getString("delivery_username"),
+                        rs.getInt("merchant_id"),
+                        rs.getString("merchant_name"),
+                        rs.getString("merchant_username"),
+                        rs.getString("dish_description"),
+                        rs.getString("address_information"),
+                        rs.getInt("orders_costomerpaid"),
+                        rs.getInt("orders_deliveryfee"),
+                        rs.getInt("orders_status"),
+                        rs.getDate("update_date").toLocalDate()));
+            }
+            return ordersViewList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }finally {
+            try {
+                JdbcUtil.close(conn, ps, rs);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
 }

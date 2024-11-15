@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface GetInformationController {
     public void getAllMerchant();
+
     public List<Merchant> getMerchantUnaudited();
 
     public List<MerchantView> getAllMerchantView(String merchantName);
@@ -33,4 +34,8 @@ public interface GetInformationController {
     public List<Orders> getOrderWaitingDeliveryAccept();
 
     public void getAllOrdersViewByCustomerId(int customerId);
+
+    public MerchantView getMerchantViewById(int merchantId);
+
+    public List<OrdersView> getNewOrdersViewByDeliveryId(int DeliveryId);
 }

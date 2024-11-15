@@ -39,5 +39,14 @@ public class OrderManageServerImpl implements OrderManageServer {
         return result;
     }
 
+    @Override
+    public void deliveryFinishOrder(int orderId, int deliveryId) {
+        boolean result = orderManage.deliveryFinishOrder(orderId, deliveryId);
+        if (result) {
+            System.out.println("订单已经完成");
+        }else
+            System.out.println("系统错误请稍后重试!");
+    }
+
 
 }
